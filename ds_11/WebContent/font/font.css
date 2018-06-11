@@ -1,0 +1,36 @@
+.box600 {
+	width: 600px;
+	border: 2px solid #b3b3ff;
+	margin: 15px auto;
+	padding: 30px;
+}
+
+.inputcss{
+	width: 400px;
+	height: 40px;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.inputidcss{
+	width: 300px;
+	height: 40px;
+	padding: 10px;
+	margin: 5px 0px 5px 5px; 
+	border-radius: 5px;
+}
+
+.inputemailcss{
+	width: 250px;
+	height: 40px;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.out {
+ width: 100%;
+ text-align: center;
+  display: inline-block;
+ }
