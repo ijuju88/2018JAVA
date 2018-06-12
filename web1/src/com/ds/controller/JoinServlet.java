@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ds.model.MemberDAO;
+
 /**
  * Servlet implementation class JoinServlet
  */
@@ -65,6 +67,8 @@ public class JoinServlet extends HttpServlet {
 		System.out.println(id+"/"+pw+"/"+name+"/"+age+"/"+email1+"/"+email2);
 		
 		//Model을 통해  DB 값 추가
+		MemberDAO obj=new MemberDAO();
+		obj.memberJoin(id,pw,name,age,email1, email2);
 		
 		//사용자에게 보여줄 페이지 전환
 		response.sendRedirect("index.do");

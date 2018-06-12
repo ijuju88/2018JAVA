@@ -32,7 +32,7 @@
 				</div>
 				<div>
 					<input type="button" class="btn btn-primary" value="중복확인"
-						name="joinIdCh" onclick="idChk(this.form);">
+						name="joinIdCh">
 				</div>
 			</div>
 
@@ -51,7 +51,7 @@
 					<label>비번확인</label>
 				</div>
 				<div style="margin-right: 10px; width: 100px;">
-					<input type="password" class="inputcss" placeholder="비번"
+					<input type="password" class="inputcss" placeholder="비번확인"
 						name="joinPw2" id="PwConfirm">
 				</div>
 			</div>
@@ -86,89 +86,71 @@
 				</div>
 				@
 				<div style="margin-right: 10px;">
-					<select type="choice" name="EmailDomain" id=""
-						EmailDomain"
-						style="height: 38px; width: 120px;"
-						name="이메일주소">
+					<select type="choice" name="joinEmail2" id="EmailDomain"
+						style="height: 38px; width: 120px;" name="이메일주소">
 						<option value="ch1" selected>없음</option>
-						<option value="ch2">naver.com</option>
-						<option value="ch3">gmail.com</option>
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
 					</select>
 				</div>
 			</div>
 
 			<div class="out">
-				<!-- <input type="submit" class="btn btn-success" value="회원가입"
-					onclick="joinCheck();" >  -->
-					<input type="submit" class="btn btn-success" value="회원가입"
-					id="btn_join"> 
-					<input type="reset"
-					class="btn btn-success" value="초기화">
+				<input type="submit" class="btn btn-success" value="회원가입"
+					id="btn_join"> <input type="reset" class="btn btn-success"
+					value="초기화">
 			</div>
 		</div>
 	</form>
 
 	<script>
 		$(function() {
-			$("#btn_join").click(function () {
+			$("#btn_join").click(function() {
+
+				var id = $('input[name=joinId]').val();
+				var pw = $('input[name=joinPw1]').val();
+				var pwConfirm = $('input[name=joinPw2]').val();
+				var name = $('input[name=joinName]').val();
+				var age = $('input[name=joinAge]').val();
+				var email1 = $('input[name=joinEmail1]').val();
+				var email2 =$('#joinEmail2 option:selected').text();
+
 				
+				//var joinAry = new Array(id, pw1, pw2, name, age, email1, email2);
+				
+				//JoinChk(joinAry);
+
 			});
 		});
-	
-		/* function joinCheck() {
-			var id = document.getElementById("Id");
-			var pw1 = document.getElementById("Pw");
-			var pw2 = document.getElementById("PwConfirm");
-			var name = document.getElementById("Name");
-			var age = document.getElementById("Age");
-			var email1 = document.getElementById("Email")
-			var email2 = document.getElementById("EmailDomain");
-
-			var emailSelect = email2.options[email2.selectedIndex].value;
-
-			var joinAry = new Array(id, pw1, pw2, name, age, email1,
-					emailSelect);
-			chk(joinAry);
-
-			//var idCheck=document.getElementById("joinIdCh");
-
-			/*
-			var idReg =/^[a-z0-9_-]\w{6,15}$/;//영어소문자 + 숫자 6-15자 이내
-			var AgeReg=/[0-9]{2,3}/; //나이 유효성검사 실습함
-			
-			if( !idReg.test(id) ) {
-			    alert("아이디는 영문자로 시작하는 6~15자 영문자 또는 숫자이어야 합니다.");
-			    return;
-			}
-			
-			 */
-
-			return;
+		
+		/* 
+		function joinCheck() {
+		var id = document.getElementById("Id");
+		var pw1 = document.getElementById("Pw");
+		var pw2 = document.getElementById("PwConfirm");
+		var name = document.getElementById("Name");
+		var age = document.getElementById("Age");
+		var email1 = document.getElementById("Email")
+		var email2 = document.getElementById("EmailDomain");
+		var emailSelect = email2.options[email2.selectedIndex].value;
+		var joinAry = new Array(id, pw1, pw2, name, age, email1,
+				emailSelect);
+		chk(joinAry);
+		//var idCheck=document.getElementById("joinIdCh");
+		/*
+		var idReg =/^[a-z0-9_-]\w{6,15}$/;//영어소문자 + 숫자 6-15자 이내
+		var AgeReg=/[0-9]{2,3}/; //나이 유효성검사 실습함
+		
+		if( !idReg.test(id) ) {
+		    alert("아이디는 영문자로 시작하는 6~15자 영문자 또는 숫자이어야 합니다.");
+		    return;
 		}
+		
+		 */
 
-		function chk(joinAry){
-			alert(joinAry[4].value);
-			for(var i in joinAry){
-				if(joinAry[i].value==""){
-					alert(""+joinAry[i].name+" 입력 안됨");
-					joinAry[i].focus();
-					return;
-				}else if(joinAry[1].value!=joinAry[2].value){
-					alert("비번이 다름");
-					joinAry[1].focus();
-					return;
-				}
-				
-			}
-			if(joinAry[6].toString()=='ch1'){
-				alert("이메일주소 입력 안됨");
-				joinAry[5].focus();
-				return;
-			}
-			
-		} */
+		
+		
 	</script>
-
 	<!-- 메뉴불러오기 -->
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
