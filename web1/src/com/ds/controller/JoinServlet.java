@@ -49,7 +49,25 @@ public class JoinServlet extends HttpServlet {
 	 //html에서 form method="Post"일때
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		//한글처리
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		//jsp에서 전달되는 값 받기
+		String id=request.getParameter("joinId");
+		String pw=request.getParameter("joinPw1");
+		String name=request.getParameter("joinName");
+		String age=request.getParameter("joinAge");
+		String email1=request.getParameter("joinEmail1");
+		String email2=request.getParameter("joinEmail2");
+		
+		System.out.println(id+"/"+pw+"/"+name+"/"+age+"/"+email1+"/"+email2);
+		
+		//Model을 통해  DB 값 추가
+		
+		//사용자에게 보여줄 페이지 전환
+		response.sendRedirect("index.do");
 	}
 
 }

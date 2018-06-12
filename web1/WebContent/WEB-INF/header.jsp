@@ -5,17 +5,20 @@
 <link rel="stylesheet" href="css/bootstrap.min.css?var=1">
 <link rel="stylesheet" href="font/font.css?var=1" />
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js?var=1"></script>
+<script src="js/jquery-3.2.1.slim.min.js?var=1"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=1"></script>
 <script src="js/bootstrap.min.js?var=1"></script>
 
-//summernote설정용
+<!-- summernote설정용 -->
 <link href="css/summernote-bs4.css?var=1" rel="stylesheet">
 <script src="js/summernote-bs4.js?var=1"></script>
 
 <script src="css/lang/summernote-ko-KR.js?var=1"></script>
 
-
+<!-- 알림창용 sweetalert2 -->
+<!-- https://sweetalert2.github.io/ -->
+<script src="js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="css/sweetalert2.min.css">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
