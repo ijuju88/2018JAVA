@@ -10,7 +10,7 @@ public class MemberDAO {
 
 	}
 
-	public boolean memberJoin(String id, String pw, String name, String age, String email1, String email2) {
+	public int memberJoin(String id, String pw, String name, String age, String email1, String email2) {
 		try {
 			String sql="INSERT INTO V1_MEMBER VALUES(?,?,?,?,?,SYSDATE)";
 			
@@ -21,13 +21,13 @@ public class MemberDAO {
 			ps.setInt(4, Integer.parseInt(age));
 			ps.setString(5, email1+"@"+email2);
 			
-			return ps.execute();
+			return ps.executeUpdate();
 			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
-			return false;
+			return 0;
 		}
 	}
 

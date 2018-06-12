@@ -123,32 +123,7 @@
 			});
 		});
 		
-		/* 
-		function joinCheck() {
-		var id = document.getElementById("Id");
-		var pw1 = document.getElementById("Pw");
-		var pw2 = document.getElementById("PwConfirm");
-		var name = document.getElementById("Name");
-		var age = document.getElementById("Age");
-		var email1 = document.getElementById("Email")
-		var email2 = document.getElementById("EmailDomain");
-		var emailSelect = email2.options[email2.selectedIndex].value;
-		var joinAry = new Array(id, pw1, pw2, name, age, email1,
-				emailSelect);
-		chk(joinAry);
-		//var idCheck=document.getElementById("joinIdCh");
-		/*
-		var idReg =/^[a-z0-9_-]\w{6,15}$/;//영어소문자 + 숫자 6-15자 이내
-		var AgeReg=/[0-9]{2,3}/; //나이 유효성검사 실습함
-		
-		if( !idReg.test(id) ) {
-		    alert("아이디는 영문자로 시작하는 6~15자 영문자 또는 숫자이어야 합니다.");
-		    return;
-		}
-		
-		 */
-
-		
+	
 		
 	</script>
 	<!-- 메뉴불러오기 -->

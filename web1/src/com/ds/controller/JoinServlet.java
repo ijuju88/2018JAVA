@@ -1,6 +1,8 @@
 package com.ds.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,10 +70,26 @@ public class JoinServlet extends HttpServlet {
 		
 		//Model을 통해  DB 값 추가
 		MemberDAO obj=new MemberDAO();
-		obj.memberJoin(id,pw,name,age,email1, email2);
+		int ret = obj.memberJoin(id,pw,name,age,email1, email2);
 		
-		//사용자에게 보여줄 페이지 전환
-		response.sendRedirect("index.do");
+		//System.out.println(ret);
+		
+		if(ret!=0) {
+			//사용자에게 보여줄 페이지 전환
+			PrintWriter out=response.getWriter();
+			response.setContentType("text/html; character=UTF-8");
+			
+			out.println("<script>"
+					+ "alert('회원가입완료');"
+					+"location.href='index.do';"
+					+"</script>");
+			
+			//response.sendRedirect("index.do");
+		}else {
+			response.sendRedirect("join.do");
+		}
+		
+		
 	}
 
 }
