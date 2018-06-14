@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="font/font.css?var=1" />
 
 <script src="js/jquery-3.2.1.slim.min.js?var=1"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=1"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=1"></script>
 <script src="js/bootstrap.min.js?var=1"></script>
 
 <!-- summernote설정용 -->
@@ -20,6 +21,15 @@
 <script src="js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="css/sweetalert2.min.css">
 
+<!-- jstl -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+
+<!-- 세션정보 가지고오기 -->
+<% 
+	HttpSession httpsession=request.getSession();
+	String id=(String)httpsession.getAttribute("SID");
+	String name=(String)httpsession.getAttribute("SNAME");
+%>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNav" aria-controls="navbarNav"
@@ -31,10 +41,24 @@
 			<li class="nav-item active"><a class="nav-link disabled"
 				href="index.do" style="color: #fff">홈 <span class="sr-only">(current)</span></a>
 			</li>
+
+			<% if(id == null){ %>
+
 			<li class="nav-item"><a class="nav-link" href="login.do"
 				style="color: #fff">로그인</a></li>
+			
 			<li class="nav-item"><a class="nav-link" href="join.do"
 				style="color: #fff">회원가입</a></li>
+		
+			<%}else{ %>
+			<li class="nav-item"><a class="nav-link" href="logout.do"
+				style="color: #fff"><%=name %>님 로그아웃</a></li>
+
+			<li class="nav-item"><a class="nav-link" href="join.do"
+				style="color: #fff">회원수정</a></li>
+			<%} %>
+
+
 			<li class="nav-item"><a class="nav-link" href="boardlist.do"
 				style="color: #fff">게시판</a></li>
 		</ul>

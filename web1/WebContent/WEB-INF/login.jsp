@@ -12,7 +12,7 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<form action="login.do" method="post">
-		<div class="box600">
+		<div class="box600">		
 			<h4>로그인</h4>
 			<hr />
 
@@ -42,6 +42,7 @@
 					value="초기화">
 			</div>
 		</div>
+		
 	</form>
 
 	<script>

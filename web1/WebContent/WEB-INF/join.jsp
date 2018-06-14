@@ -105,26 +105,33 @@
 
 	<script>
 		$(function() {
-			$("#btn_join").click(function() {
+			$("#btn_join").click(
+					function() {
 
-				var id = $('input[name=joinId]').val();
-				var pw = $('input[name=joinPw1]').val();
-				var pwConfirm = $('input[name=joinPw2]').val();
-				var name = $('input[name=joinName]').val();
-				var age = $('input[name=joinAge]').val();
-				var email1 = $('input[name=joinEmail1]').val();
-				var email2 =$('#joinEmail2 option:selected').text();
+						var id = $('input[name=joinId]').val();
+						var pw = $('input[name=joinPw1]').val();
+						var pwConfirm = $('input[name=joinPw2]').val();
+						var name = $('input[name=joinName]').val();
+						var age = $('input[name=joinAge]').val();
+						var email1 = $('input[name=joinEmail1]').val();
+						var email2 = $('#joinEmail2 option:selected').text();
 
-				
-				//var joinAry = new Array(id, pw1, pw2, name, age, email1, email2);
-				
-				//JoinChk(joinAry);
+						alert($('input[name=joinId]').attr('placeholder'));
 
-			});
+						var joinAry = new Array(id, pw1, pw2, name, age,
+								email1, email2);
+
+						JoinChk(joinAry);
+
+					});
 		});
-		
-	
-		
+
+		function JoinChk(joinAry) {
+
+			for (var i = 0; i < joinAry.length; i++) {
+
+			}
+		}
 	</script>
 	<!-- 메뉴불러오기 -->
 	<jsp:include page="footer.jsp"></jsp:include>

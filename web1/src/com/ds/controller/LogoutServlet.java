@@ -1,28 +1,26 @@
 package com.ds.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.ds.vo.V1_Board;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class BoradServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/boardlist.do")
-public class BoradServlet extends HttpServlet {
+@WebServlet("/logout.do")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoradServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,33 +30,10 @@ public class BoradServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String[] str = { "글번호", "제목", "작성자", "조회수", "날짜" };
-		request.setAttribute("str", str);
-		
-		
-		//C -> V로 전달
-		request.setAttribute("aaa", "게시판");
-		
-	
-		//Object 보내기
-		List<V1_Board> list=new ArrayList<>();
-		
-		for (int i = 0; i < 10; i++) {
-			V1_Board vo=new V1_Board();
-			vo.setBrd_no(i);
-			vo.setBrd_title("제목");
-			vo.setBrd_writer("작성자");
-			vo.setBrd_hit(2);
-			vo.setBrd_date("2018-06-14 16:50");
-			list.add(vo);	
-		}
-		
-		//System.out.println(vo.getBrd_no());
-		request.setAttribute("list", list);
-		
+		HttpSession httpsession=request.getSession();
+		httpsession.invalidate(); //세션 날리기
 
-		request.getRequestDispatcher("/WEB-INF/boardlist.jsp").forward(request, response);
+		response.sendRedirect("index.do");
 	}
 
 	/**
