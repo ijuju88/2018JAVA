@@ -1,9 +1,6 @@
 package com.ds.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ds.model.BoardDAO;
-import com.ds.vo.V1_Board;
 
 /**
- * Servlet implementation class BoradServlet
+ * Servlet implementation class BoradViewServlet
  */
-@WebServlet("/boardlist.do")
-public class BoradServlet extends HttpServlet {
+@WebServlet("/boardview.do")
+public class BoradViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoradServlet() {
+    public BoradViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,31 +29,22 @@ public class BoradServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setAttribute("title", "글보기");
 		
-		String[] str = { "글번호", "제목", "작성자", "조회수", "날짜" };
-		request.setAttribute("str", str);
-		
-		
-		//C -> V로 전달
-		request.setAttribute("aaa", "게시판");
+		//boardview.do?no=?
+		String no=request.getParameter("no");
 		
 	
-		//Object 보내기
 		
-		BoardDAO bDAO=new BoardDAO();
-		List<V1_Board> list=bDAO.selectBoradList();
+		request.getRequestDispatcher("/WEB-INF/boardview.jsp").forward(request, response);
 		
-		//System.out.println(vo.getBrd_no());
-		request.setAttribute("list", list);
-		
-
-		request.getRequestDispatcher("/WEB-INF/boardlist.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		
 	}
 

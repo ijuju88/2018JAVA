@@ -17,17 +17,18 @@
 
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
+	<form action="boardwrite.do" method="post">
 	<div class="box600">
 		<h4><%=title%></h4>
 		<div style="margin-bottom: 5px">
-			<input type="text" class="form-control" placeholder="제목" />
+			<input type="text" name="title" class="form-control" placeholder="제목" />
 		</div>
 		<div style="margin-bottom: 5px">
-			<textarea rows="6" cols="75%" placeholder="제목" id="summernote"></textarea>
+			<textarea rows="6" cols="75%" name="content" id="summernote"></textarea>
 		</div>
 
 		<div style="margin-bottom: 5px">
-			<input type="text" class="form-control" placeholder="작성자" />
+			<input type="text" class="form-control" name="writer" placeholder="작성자" />
 		</div>
 
 		<div style="margin-bottom: 5px;">
@@ -35,7 +36,7 @@
 				class="btn btn-light" href="boardlist.do">글목록</a>
 		</div>
 	</div>
-	
+</form>	
   <script>
     $(document).ready(function() {
     	  $('#summernote').summernote({

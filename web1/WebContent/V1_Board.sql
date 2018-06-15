@@ -17,4 +17,4 @@ COMMIT;
 SELECT * FROM V1_BOARD;
 
 INSERT INTO V1_BOARD VALUES
-(SEQ_V1_BOARD_NO.NEXTVAL, '제목1','aaa...','내용은 내용이고 내용이다',1, NULL, SYSDATE);
+(SEQ_V1_BOARD_NO.NEXTVAL, '제목12','tre','내용은 내용이고 내용이다',2, NULL, SYSDATE);

@@ -34,3 +34,12 @@
  text-align: center;
   display: inline-block;
  }
+ 
+.tableclass{
+	border: 1px solid pink; 
+	margin: 5px;
+}
+
+th, td {
+    border: 1px solid #444444;
+  }
