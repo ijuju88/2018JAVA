@@ -31,12 +31,12 @@
 						<!-- 제목 글자수 제한 -->
 						<c:choose>
 							<c:when test="${fn:length(vo.brd_title)>10}">
-								<td><a href="boardview.do?no=${vo.brd_no}"> 
+								<td><a href="boardup.do?no=${vo.brd_no}"> 
 								<c:out value="${fn:substring(vo.brd_title,0,10)}" /> ....
 								</a></td>
 							</c:when>
 							<c:otherwise>
-								<td><a href="boardup.do?no=10">${vo.brd_title}</a></td>
+									<td><a href="boardup.do?no=${vo.brd_no}">${vo.brd_title}</a></td>
 							</c:otherwise>
 						</c:choose>
 						<td>${vo.brd_writer}</td>

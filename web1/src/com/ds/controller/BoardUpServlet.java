@@ -33,6 +33,7 @@ public class BoardUpServlet extends HttpServlet {
 		//boardup.do?no=? 두번거쳐서 조회수 증가반복없애기
 		String no=request.getParameter("no");
 
+		System.out.println("글보기들어감");
 		//조회수 1증가
 		BoardDAO dDAO=new BoardDAO();
 		int ret=dDAO.updateBoardHit(Integer.parseInt(no));

@@ -2,19 +2,19 @@
 	pageEncoding="UTF-8"%>
 
 
-<link rel="stylesheet" href="css/bootstrap.min.css?var=1">
-<link rel="stylesheet" href="font/font.css?var=1" />
+<link rel="stylesheet" href="css/bootstrap.min.css?var=2">
+<link rel="stylesheet" href="font/font.css?var=2" />
 
-<script src="js/jquery-3.2.1.slim.min.js?var=1"></script>
+<script src="js/jquery-3.2.1.slim.min.js?var=2"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=1"></script>
-<script src="js/bootstrap.min.js?var=1"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=2"></script>
+<script src="js/bootstrap.min.js?var=2"></script>
 
 <!-- summernote설정용 -->
-<link href="css/summernote-bs4.css?var=1" rel="stylesheet">
-<script src="js/summernote-bs4.js?var=1"></script>
+<link href="css/summernote-bs4.css?var=2" rel="stylesheet">
+<script src="js/summernote-bs4.js?var=2"></script>
 
-<script src="css/lang/summernote-ko-KR.js?var=1"></script>
+<script src="css/lang/summernote-ko-KR.js?var=2"></script>
 
 <!-- 알림창용 sweetalert2 -->
 <!-- https://sweetalert2.github.io/ -->

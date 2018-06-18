@@ -10,6 +10,7 @@ public class V1_Board {
 	private int brd_hit=0; //BLOB
 	private byte[] brd_img=null;
 	private String brd_date=null;
+	private String brd_file=null;
 	
 	public int getBrd_no() {
 		return brd_no;
@@ -54,12 +55,19 @@ public class V1_Board {
 	public void setBrd_date(String brd_date) {
 		this.brd_date = brd_date;
 	}
+	public String getBrd_file() {
+		return brd_file;
+	}
+	public void setBrd_file(String brd_file) {
+		this.brd_file = brd_file;
+	}
 	@Override
 	public String toString() {
 		return "V1_Board [brd_no=" + brd_no + ", brd_title=" + brd_title + ", brd_writer=" + brd_writer
 				+ ", brd_content=" + brd_content + ", brd_hit=" + brd_hit + ", brd_img=" + Arrays.toString(brd_img)
-				+ ", brd_date=" + brd_date + "]";
+				+ ", brd_date=" + brd_date + ", brd_file=" + brd_file + "]";
 	}
+	
 	
 	
 }

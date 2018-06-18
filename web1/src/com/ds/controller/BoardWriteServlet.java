@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ds.model.BoardDAO;
 import com.ds.vo.V1_Board;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class BoardWrite
@@ -36,6 +38,7 @@ public class BoardWriteServlet extends HttpServlet {
 		
 		request.setAttribute("title", "글쓰기");
 		
+		
 		request.getRequestDispatcher("/WEB-INF/boardwrite.jsp").forward(request, response);
 	}
 
@@ -50,22 +53,42 @@ public class BoardWriteServlet extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			
-			String title=request.getParameter("title");
-			String content=request.getParameter("content");
-			String writer=request.getParameter("writer");
+			//파일첨부
 			
+			 //최대용량
+			int maxSize=1024 * 1024 * 5; 
+			
+			//저장위치
+			String root=request.getSession()
+					.getServletContext()
+					.getRealPath("/");
+					
+			//request를 MultipartRequest로 변경
+			MultipartRequest multi=new MultipartRequest
+					(request, root,maxSize,"UTF-8",new  DefaultFileRenamePolicy());
+					
+			System.out.println(root);
+			
+			
+			//기종의 request를 multi로 바꾼다
+			String title=multi.getParameter("title");
+			String content=multi.getParameter("content");
+			String writer=multi.getParameter("writer");
+			String filename=multi.getFilesystemName("img");
 			//System.out.println(title+"/"+content+"/"+writer);
 			
-			//vo생성
+			
+		//vo생성
 			V1_Board vo=new V1_Board();
 			vo.setBrd_title(title);
 			vo.setBrd_content(content);
 			vo.setBrd_writer(writer);
+			//vo.setBrd_img();
+			vo.setBrd_file(filename);
 			
 			//Model을 통해  DB 값 추가
 			BoardDAO bDAO=new BoardDAO();
 			bDAO.insertBoard(vo);
-			
 
 			response.sendRedirect("boardlist.do");
 			
