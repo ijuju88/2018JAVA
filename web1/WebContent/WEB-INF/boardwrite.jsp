@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <!-- jstl -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -11,6 +12,7 @@
 <title>
 	<%
 		String title = (String) request.getAttribute("title");
+		String sid = (String) request.getAttribute("sid");
 	%> <%=title%>
 
 </title>
@@ -27,23 +29,23 @@
 			<h4><%=title%></h4>
 			<div style="margin-bottom: 5px">
 				<input type="text" name="title" class="form-control"
-					placeholder="제목" />
+					placeholder="제목" id="title"/>
 			</div>
 			<div style="margin-bottom: 5px">
-				<textarea rows="6" cols="75%" name="content" id="summernote"></textarea>
+				<textarea rows="6" cols="75%" name="content" id="summernote" id="content"></textarea>
 			</div>
 
 			<div style="margin-bottom: 5px">
 				<input type="text" class="form-control" name="writer"
-					value="${sessionScope.SID}"/>
+					value="${sessionScope.SID}"  id="writer" readonly/>
 			</div>
 
 			<div style="margin-bottom: 5px">
-				<input type="file" class="form-control" name="img" />
+				<input type="file" class="form-control" name="img" id="img" />
 			</div>
 
 			<div style="margin-bottom: 5px;">
-				<input type="submit" class="btn btn-primary" value="글쓰기" /> <a
+				<input type="submit" class="btn btn-primary" id="btn-write" value="글쓰기" /> <a
 					class="btn btn-light" href="boardlist.do">글목록</a>
 			</div>
 		</div>
@@ -58,6 +60,21 @@
 				lang : 'ko-KR' // 한국어 지정(기본값은 en-US)
 
 			});
+			
+			 $('#btn-write').click(function() {
+					
+				var title =  $("#title").val();
+				var content =  $("#content").val();
+				
+				if (title == "") {
+					alert("제목이 없습니다");
+					$("#title").focus();
+					return false;
+				}
+				return true;
+			}); 
+
+			
 		});
 	</script>
 	<jsp:include page="footer.jsp"></jsp:include>

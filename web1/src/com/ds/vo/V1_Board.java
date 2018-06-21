@@ -7,11 +7,26 @@ public class V1_Board {
 	private String brd_title=null; 
 	private String brd_writer=null;
 	private String brd_content=null; //CLOB
-	private int brd_hit=0; //BLOB
-	private byte[] brd_img=null;
+	private int brd_hit=0; 
+	private String brd_hit1=null; 
+	private byte[] brd_img=null;//BLOB
 	private String brd_date=null;
 	private String brd_file=null;
 	
+	public V1_Board() {
+		super();
+	}
+	
+	public V1_Board(int brd_no, String brd_title, String brd_writer, String brd_content, String brd_file) {
+		super();
+		this.brd_no = brd_no;
+		this.brd_title = brd_title;
+		this.brd_writer = brd_writer;
+		this.brd_content = brd_content;
+		this.brd_file = brd_file;
+	}
+	
+
 	public int getBrd_no() {
 		return brd_no;
 	}
@@ -42,6 +57,13 @@ public class V1_Board {
 	public void setBrd_hit(int brd_hit) {
 		this.brd_hit = brd_hit;
 	}
+	
+	public String getBrd_hit1() {
+		return brd_hit1;
+	}
+	public void setBrd_hit1(String brd_hit1) {
+		this.brd_hit1 = brd_hit1;
+	}
 	public byte[] getBrd_img() {
 		return brd_img;
 	}
@@ -64,9 +86,11 @@ public class V1_Board {
 	@Override
 	public String toString() {
 		return "V1_Board [brd_no=" + brd_no + ", brd_title=" + brd_title + ", brd_writer=" + brd_writer
-				+ ", brd_content=" + brd_content + ", brd_hit=" + brd_hit + ", brd_img=" + Arrays.toString(brd_img)
-				+ ", brd_date=" + brd_date + ", brd_file=" + brd_file + "]";
+				+ ", brd_content=" + brd_content + ", brd_hit=" + brd_hit + ", brd_hit1=" + brd_hit1 + ", brd_img="
+				+ Arrays.toString(brd_img) + ", brd_date=" + brd_date + ", brd_file=" + brd_file + "]";
 	}
+	
+	
 	
 	
 	

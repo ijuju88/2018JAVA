@@ -76,7 +76,14 @@ public class LoginServlet extends HttpServlet {
 			
 			response.sendRedirect("index.do");
 		}else {
-			response.sendRedirect("login.do");
+			
+			PrintWriter out=response.getWriter();
+			response.setContentType("text/html; character=UTF-8");
+			
+			out.println("<script>"
+					+ "alert('아이디 또는 비번이 잘못되었습니다');"
+					+"location.href='login.do';"
+					+"</script>");
 		}
 	}
 

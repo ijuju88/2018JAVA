@@ -24,6 +24,14 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
+
+			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
+				<version>2.2</version> <configuration> Path <path>/web1</path> 구동중인 톰캣의 주소 
+				+ /manager/text <url>http://192.168.0.239:8080/manager/text</url> 톰캣 사용자 
+				정보 <username>ds</username> <password>class601</password> </configuration> 
+				</plugin> -->
+
+
 		</plugins>
 	</build>
 	<repositories>
@@ -71,6 +79,13 @@
 			<groupId>servlets.com</groupId>
 			<artifactId>cos</artifactId>
 			<version>05Nov2002</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
 		</dependency>
 
 	</dependencies>

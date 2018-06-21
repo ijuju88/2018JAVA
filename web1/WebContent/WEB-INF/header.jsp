@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css?var=2">
 <link rel="stylesheet" href="font/font.css?var=2" />
 
-<script src="js/jquery-3.2.1.slim.min.js?var=2"></script>
+<script src="js/jquery-3.2.1.js?var=2"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=2"></script>
 <script src="js/bootstrap.min.js?var=2"></script>
@@ -21,8 +21,8 @@
 <script src="js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="css/sweetalert2.min.css">
 
-<!-- jstl -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<!-- jquery pagination plugin -->
+<script src="js/jquery.twbsPagination-1.3.1_bs4.js"></script>
 
 <!-- 세션정보 가지고오기 -->
 <% 

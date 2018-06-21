@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>회원가입</title>
 
 <!-- 메뉴불러오기 -->
@@ -32,7 +33,7 @@
 				</div>
 				<div>
 					<input type="button" class="btn btn-primary" value="중복확인"
-						name="joinIdCh">
+						name="joinIdCh" id="dtn-idchk">
 				</div>
 			</div>
 
@@ -42,7 +43,7 @@
 				</div>
 				<div style="margin-right: 10px; width: 100px;">
 					<input type="password" class="inputcss" placeholder="비번"
-						name="joinPw1" id="Pw">
+						name="joinPw1" id="Pw1">
 				</div>
 			</div>
 
@@ -52,7 +53,7 @@
 				</div>
 				<div style="margin-right: 10px; width: 100px;">
 					<input type="password" class="inputcss" placeholder="비번확인"
-						name="joinPw2" id="PwConfirm">
+						name="joinPw2" id="Pw2">
 				</div>
 			</div>
 
@@ -86,7 +87,7 @@
 				</div>
 				@
 				<div style="margin-right: 10px;">
-					<select type="choice" name="joinEmail2" id="EmailDomain"
+					<select type="choice" name="joinEmail2" id="EmailAddress"
 						style="height: 38px; width: 120px;" name="이메일주소">
 						<option value="ch1" selected>없음</option>
 						<option value="naver.com">naver.com</option>
@@ -108,30 +109,102 @@
 			$("#btn_join").click(
 					function() {
 
-						var id = $('input[name=joinId]').val();
-						var pw = $('input[name=joinPw1]').val();
-						var pwConfirm = $('input[name=joinPw2]').val();
-						var name = $('input[name=joinName]').val();
-						var age = $('input[name=joinAge]').val();
-						var email1 = $('input[name=joinEmail1]').val();
-						var email2 = $('#joinEmail2 option:selected').text();
+						var id = $("#Id").val();
+						var pw = $("#Pw1").val();
+						var pwConfirm = $("#Pw2").val();
+						var name = $("#Name").val();
+						var age = $("#Age").val();
+						var email = $("#Email").val();
+						var emailAddress = $("#EmailAddress option:selected")
+								.text();
 
-						alert($('input[name=joinId]').attr('placeholder'));
+						var joinAry = new Array(id, pw, pwConfirm, name, age,
+								email, emailAddress);
+						//alert(joinAry[0]+"/"+joinAry[1]);
 
-						var joinAry = new Array(id, pw1, pw2, name, age,
-								email1, email2);
+						for (var i = 0; i < joinAry.length; i++) {
+							if (joinAry[i] == "") {
+								alert("I don't have a(n)" + join[i]
+										+ "!! Please enter!");
+								join[i].focus();
+								return false;
+							} else if (joinAry[1] != joinAry[2]) {
+								alert("Your password is different.");
+								join[i].focus();
+								return false;
+							} else if (joinAry[6].toString() == 'ch1') {
+								alert('Please select an email address --;');
+								return false;
+							}
+						}
+						return;
 
-						JoinChk(joinAry);
-
+						//JoinChk(joinAry);
 					});
+
+			/*
+			xml과 json
+			<xml>
+				<data>abc</data>
+				<id>iii</id>
+			</xml>
+			
+			{"data":"abc", "id":"iii"}
+			
+			 */
+			//doGet 호출
+			$('#Id').keyup(function() {
+				var idchk = $('#Id').val();
+				//alert(idchk);
+				if (idchk.length > 0) {
+					$.get('ajaxidcheck.do?Id=' + idchk, function(data) {
+						//document.write( "data: " + data );
+						//console.log(data);
+
+						if (data.ret == 'y') {
+							$('#dtn-idchk').val('사용가능');
+							$('#dtn-idchk').attr('class', 'btn btn-success');
+						} else if (data.ret == 'n') {
+							$('#dtn-idchk').val('사용불가');
+							$('#dtn-idchk').attr('class', 'btn btn-warning');
+						}
+						console.log(data);
+					}, 'json');
+				} else {
+					$('#dtn-idchk').val('중복확인');
+					$('#dtn-idchk').attr('class', 'btn btn-primary');
+				}
+
+				/* 	//doPost 호출
+					$.post('서버주소','전달값',function(data){
+						
+					},'json');
+				 */
+
+			});
+
 		});
 
-		function JoinChk(joinAry) {
-
-			for (var i = 0; i < joinAry.length; i++) {
-
-			}
-		}
+		/* 
+		 function JoinChk(joinAry) {
+		
+		 for (var i = 0; i < joinAry.length; i++) {
+		 if (join[i] == "") {
+		 alert("I don't have a(n)"+join[i]+"!! Please enter!");
+		 join[i].focus();
+		 return false;
+		 }else(join[1]!=join[2]){
+		 alert("Your password is different.");
+		 join[i].focus();
+		 return false;
+		 }else(join[6].toString()=='ch1'){
+		 alert('Please select an email address --;');
+		 return false;
+		 }
+		 return;
+		 }
+		
+		 }    */
 	</script>
 	<!-- 메뉴불러오기 -->
 	<jsp:include page="footer.jsp"></jsp:include>

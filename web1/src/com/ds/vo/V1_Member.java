@@ -8,6 +8,7 @@ public class V1_Member {
 	private String mem_email=null;
 	private String mem_date=null;
 	
+	
 	public String getMem_id() {
 		return mem_id;
 	}

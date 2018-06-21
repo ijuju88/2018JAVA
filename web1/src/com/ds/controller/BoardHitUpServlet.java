@@ -13,13 +13,13 @@ import com.ds.model.BoardDAO;
  * Servlet implementation class BoardUpServlet
  */
 @WebServlet("/boardup.do")
-public class BoardUpServlet extends HttpServlet {
+public class BoardHitUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BoardUpServlet() {
+	public BoardHitUpServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

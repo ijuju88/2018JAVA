@@ -7,20 +7,21 @@ import com.ds.vo.V1_Member;
 //회원관련
 public class MemberDAO {
 	PreparedStatement ps;
+	ResultSet rs;
 
 	public V1_Member memberLogin(String id, String pw) {
 		try {
-			
+
 			// SELECT * FROM 테이블명 WHERE 조건
 			String sql = "SELECT * FROM V1_MEMBER " + " WHERE MEM_ID=? AND MEM_PW=?";
 			ps = OracleConnStatic.getConn().prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, pw);
 
-			
+
 			// int ret = insert, update, delete => ps.executeUpdate()
 			ResultSet rs = ps.executeQuery(); // SELECT일경우
-			
+
 			if (rs.next()) { // SELECT를 통해 반환된 값이 있느냐?
 				V1_Member vo = new V1_Member();
 				vo.setMem_id(rs.getString("MEM_ID"));
@@ -37,34 +38,44 @@ public class MemberDAO {
 	}
 
 
-public int memberJoin(String id, String pw, String name, String age, String email1, String email2) {
-	try {
-		String sql="INSERT INTO V1_MEMBER VALUES(?,?,?,?,?,SYSDATE)";
+	public int memberJoin(String id, String pw, String name, String age, String email1, String email2) {
+		try {
+			String sql="INSERT INTO V1_MEMBER VALUES(?,?,?,?,?,SYSDATE)";
 
-		ps=OracleConnStatic.getConn().prepareStatement(sql);
-		ps.setString(1, id);
-		ps.setString(2, pw);
-		ps.setString(3, name);
-		ps.setInt(4, Integer.parseInt(age));
-		ps.setString(5, email1+"@"+email2);
+			ps=OracleConnStatic.getConn().prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, pw);
+			ps.setString(3, name);
+			ps.setInt(4, Integer.parseInt(age));
+			ps.setString(5, email1+"@"+email2);
 
-		return ps.executeUpdate();
+			return ps.executeUpdate();
 
 
-	} catch (Exception e) {
-		// TODO: handle exception
-		System.out.println(e.getMessage());
-		return 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
+
+	public int memberIDCheck(String id) {
+		try {
+			String sql="SELECT COUNT(*) CNT FROM V1_MEMBER"
+					+" WHERE MEM_ID=?";
+
+			ps=OracleConnStatic.getConn().prepareStatement(sql);
+			ps.setString(1, id);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("CNT"); //존재유뮤 0,1
+			}
+
+			return -1;
+		} catch (Exception e) {
+			System.out.println("아이디체크오류 : "+e.getMessage());
+			return -1;
+		}
 	}
 }
 
-public void changePassword() {
-
-}
-
-public void memberEdit() {
-
-}
-
-
-}
