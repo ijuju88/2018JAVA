@@ -19,6 +19,18 @@
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
+		<div class="form-inline justify-content-end">
+
+			<select class="form-control" id="type-search" style="margin: 5px;">
+				<option value="brd_title">제목</option>
+				<option value="brd_content">내용</option>
+				<option value="brd_writer">작성자</option>
+			</select> <input type="text" class="form-control" placeholder="검색어 입력"
+				id="text-search" /> <input type="submit" class="btn btn-success"
+				value="검색 " />
+		</div>
+
+
 		${aaa}<br /> ${vo.brd_no} ${vo.brd_title} ${vo.brd_content}
 		<table class="table table-hover">
 			<thead class="thead-dark">
@@ -66,12 +78,12 @@
 			</ul>
 		</nav> --%>
 
-	
+
 		<ul id="pagination" class="pagination justify-content-center"></ul>
-	
-	<a href="boardwrite.do" class="btn btn-primary" id="boardwritechk">글쓰기</a>
+
+		<a href="boardwrite.do" class="btn btn-primary" id="boardwritechk">글쓰기</a>
 	</div>
-	
+
 	<script>
 		//페이징 라이브러리 사용
 		$(function() {
@@ -81,7 +93,25 @@
 				visiblePages : 10,
 				href : '?page={{number}}'
 			});
-	
+			
+			//id가 text-search인 곳에 키를 눌러지면..
+			//event는 반환값
+			$('#text-search').keyup(function(event){
+				
+				//아스코코드값으로 Enter에대한 번호를 찾아..
+				//http://skmagic.tistory.com/66
+				if(event.which == 13){
+					//alert("Enter키");
+					//var typeSearch = $("#type-search option:selected").text();  //이렇게 하면 선택한 내용이 나옴
+					var typeSearch = $('#type-search').val();
+					var textSearch = $('#text-search').val();
+					
+					//a태그를 발생시킴
+					window.location.href="boardlist.do?page="+page+"&type="+typeSearch+"&text="+textSearch;
+				}
+				
+			});
+
 		});
 	</script>
 	<jsp:include page="footer.jsp"></jsp:include>

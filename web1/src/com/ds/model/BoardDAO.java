@@ -10,7 +10,7 @@ public class BoardDAO {
 	PreparedStatement ps;
 	ResultSet rs;
 
-	//게시판 리스트
+	//게시판 리스트 - 기본
 	public List<V1_Board> selectBoradList(){
 
 		try {
@@ -42,7 +42,7 @@ public class BoardDAO {
 		}
 	}
 
-	//게시판 리스트2
+	//게시판 리스트2 - 확장
 	public List<V1_Board> selectBoradList1(int startnum){
 
 		try {
@@ -79,6 +79,52 @@ public class BoardDAO {
 			return null;
 		}
 	}
+	
+	
+	//게시판 리스트2 - +검색
+		public List<V1_Board> selectBoradList2(int startnum, String type, String text){
+
+			try {
+				//다른 SQL에서도 가능하도록  LIKE '%?%' 식으로 사용
+				String sql="SELECT * FROM (SELECT BRD_NO, BRD_TITLE, BRD_WRITER, "
+						+ "TO_CHAR(BRD_HIT, '999,999,999')BRD_HIT1, TO_CHAR(BRD_DATE, 'YYYY-MM-DD') BRD_DATE,"
+						+" ROW_NUMBER() OVER (ORDER BY BRD_NO desc) RNUM"
+						+" FROM V1_BOARD WHERE "+type+" LIKE ?) WHERE RNUM BETWEEN ? AND ?";
+						
+						
+						//" FROM V1_BOARD WHERE ? LIKE '%' || ? ||'%') WHERE RNUM BETWEEN ? AND ?"; 오라클방식
+
+
+				ps=OracleConnStatic.getConn().prepareStatement(sql);
+				//ps.setString(1, type);
+				ps.setString(1, "%"+text+"%");
+				ps.setInt(2, startnum);
+				ps.setInt(3, startnum+9);
+				rs=ps.executeQuery();
+				System.out.println("%"+text+"%");
+
+				//여러개 보관하기 위한 객체
+				List<V1_Board> list= new ArrayList<>();
+				while(rs.next()) {
+					V1_Board vo=new V1_Board();
+					vo.setBrd_no(rs.getInt("BRD_NO"));
+					vo.setBrd_title(rs.getString("BRD_TITLE"));
+					vo.setBrd_writer(rs.getString("BRD_WRITER"));
+					vo.setBrd_hit1(rs.getString("BRD_HIT1"));
+					vo.setBrd_date(rs.getString("BRD_DATE"));
+
+					list.add(vo);
+				}
+				if(list.size()>0) {
+					return list;
+				}
+				return null;
+
+			} catch (Exception e) {
+				System.out.println("리스트 갯수 관련 에러 : "+e.getMessage());
+				return null;
+			}
+		}
 
 	//게시판 전체 갯수 
 	public int selectBordadListCount() {

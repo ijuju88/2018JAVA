@@ -48,11 +48,16 @@ public class BoardUpdateServlet extends HttpServlet {
 			System.out.println("업데이트 확인 : "+brd_no+"/"+brd_title+"/"+brd_content);
 			System.out.println("업데이트 확인 : "+brd_writer+"/"+brd_file);
 			
+			V1_Board vo1=new V1_Board();
+		
+			
 			V1_Board vo=new V1_Board(Integer.parseInt(brd_no), brd_title, brd_writer, brd_content, brd_file);
+			
 			
 			BoardDAO dDAO=new BoardDAO();
 			dDAO.boardUpdate(vo);
 			response.sendRedirect("boardview.do?no="+brd_no);
+			
 			
 		} catch (Exception e) {
 			System.out.println("업데이트 에러 : "+e.getMessage());

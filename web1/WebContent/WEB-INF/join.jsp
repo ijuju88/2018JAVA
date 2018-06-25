@@ -17,7 +17,7 @@
 		int b = (int) request.getAttribute("num");
 	%>
 
-	<form action="join.do" method="post">
+	<!-- <form action="join.do" method="post"> -->
 		<div class="box600">
 			<h4><%=a%>:<%=b%></h4>
 			<hr />
@@ -102,7 +102,7 @@
 					value="초기화">
 			</div>
 		</div>
-	</form>
+	<!-- </form> -->
 
 	<script>
 		$(function() {
@@ -115,8 +115,7 @@
 						var name = $("#Name").val();
 						var age = $("#Age").val();
 						var email = $("#Email").val();
-						var emailAddress = $("#EmailAddress option:selected")
-								.text();
+						var emailAddress = $("#EmailAddress option:selected").text();
 
 						var joinAry = new Array(id, pw, pwConfirm, name, age,
 								email, emailAddress);

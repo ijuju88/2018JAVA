@@ -44,6 +44,14 @@ public class BoradServlet extends HttpServlet {
 				page="1"; //page=1
 			}	
 			
+			
+			//검색관련.....
+			String type=request.getParameter("type");
+			String text=request.getParameter("text");
+			
+			
+			
+			
 			String[] str = { "글번호", "제목", "작성자", "조회수", "날짜" };
 			request.setAttribute("str", str);
 
@@ -70,10 +78,15 @@ public class BoradServlet extends HttpServlet {
 			 * .....
 			 * (page-1)*10+1
 			 * */
-			
-			List<V1_Board> list = bDAO.selectBoradList1( (Integer.parseInt(page)-1)*10+1 );
-			request.setAttribute("list", list);
 
+			if(type == null || text== null) {
+				List<V1_Board> list = bDAO.selectBoradList1( (Integer.parseInt(page)-1)*10+1 );
+				request.setAttribute("list", list);
+			}else if(type != null || text!= null) {
+				List<V1_Board> list = bDAO.selectBoradList2( (Integer.parseInt(page)-1)*10+1 , type, text);
+				request.setAttribute("list", list);
+			}
+			
 			// 천체 게시물수
 			int cnt = bDAO.selectBordadListCount();
 			request.setAttribute("cnt", (cnt - 1) / 10 + 1);
