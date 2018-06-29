@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="V1_Item">
+	
+	<select id="selectItem" resultType="com.ds.sts1.vo.V1_Item" >
+		SELECT 
+		ITM_NO, ITM_NAME, ITM_CONTENT,
+		ITM_PRICE, ITM_QTY, ITM_IMG1, ITM_IMG2, ITM_IMG3, ITM_DATE
+		FROM V1_ITEM ORDER BY ITM_NO ASC
+	</select>
+
+	<select id="selectItemNo" resultType="int">
+		SELECT NVL(MAX(ITM_NO),0) FROM V1_ITEM
+	</select>
+
+	<insert id="insertItemOne"
+		parameterType="com.ds.sts1.vo.V1_Item">
+		INSERT INTO V1_ITEM VALUES(#{itm_no}, #{itm_name},
+		#{itm_content}, #{itm_price},
+		#{itm_qty}, #{itm_img1, jdbcType=BLOB}, #{itm_img2, jdbcType=BLOB},
+		#{itm_img3, jdbcType=BLOB}, SYSDATE)
+	</insert>
+</mapper>

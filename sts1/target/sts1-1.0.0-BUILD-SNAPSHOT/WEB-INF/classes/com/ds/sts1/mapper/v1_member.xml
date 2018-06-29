@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="V1_Member">
+	
+	<insert id="memberJoin"  useGeneratedKeys="false" parameterType="com.ds.sts1.vo.V1_Member">
+	INSERT INTO V1_MEMBER VALUES(#{mem_id},#{mem_pw},#{mem_name},#{mem_age},#{mem_email},SYSDATE)
+	</insert>
+	
+	<select id="selectMemberList" resultType="com.ds.sts1.vo.V1_Member">
+		SELECT * FROM V1_MEMBER ORDER BY MEM_ID ASC
+	</select>
+	
+</mapper>

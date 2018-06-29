@@ -12,5 +12,9 @@
   <setting name="defaultExecutorType" value="REUSE" />
   <setting name="defaultStatementTimeout" value="5000" />
  </settings>
+ 
+ <typeAliases>
+ 	<typeAlias alias="V1_Member" type="com.ds.sts1.vo.V1_Member"/>
+ </typeAliases>
+ 
 </configuration>
-

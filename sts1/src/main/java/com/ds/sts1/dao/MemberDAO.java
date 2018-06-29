@@ -1,12 +1,15 @@
 package com.ds.sts1.dao;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ds.sts1.vo.V1_Item;
 import com.ds.sts1.vo.V1_Member;
 
 @Service
@@ -25,4 +28,13 @@ public class MemberDAO {
 	
 		
 	}
+	
+	public List<V1_Member> selectMemberList(){
+		return sqlSession.selectList("V1_Member.selectMemberList");
+	}
+
+	public V1_Member selectMemberLogin(V1_Member vo) {
+		return sqlSession.selectOne("V1_Member.selectMemberLogin",vo);	
+	}
+	
 }

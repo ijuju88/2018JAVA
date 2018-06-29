@@ -2,13 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="V1_Member">
-	<!-- <selcet id="mamberLogin" parameterType="" resultType="">
-	SELECT * FROM V1_MEMBER WHERE MEM_ID=? AND MEM_PW=?
-	</selcet> -->
 	
-	<insert id="memberJoin"  useGeneratedKeys="false" parameterType="com.ds.sts1.vo.V1_Member">
+	<insert id="memberJoin"  useGeneratedKeys="false" parameterType="V1_Member">
 	INSERT INTO V1_MEMBER VALUES(#{mem_id},#{mem_pw},#{mem_name},#{mem_age},#{mem_email},SYSDATE)
 	</insert>
 	
+	<select id="selectMemberList" resultType="V1_Member">
+		SELECT * FROM V1_MEMBER ORDER BY MEM_ID ASC
+	</select>
+	
+	<select id="selectMemberLogin" resultType="V1_Member" parameterType="V1_Member">
+		SELECT MEM_ID, MEM_NAME FROM V1_MEMBER WHERE MEM_ID=#{mem_id} AND MEM_PW=#{mem_pw}
+	</select>
 	
 </mapper>
