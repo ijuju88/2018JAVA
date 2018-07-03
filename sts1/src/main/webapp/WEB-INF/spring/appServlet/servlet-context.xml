@@ -12,6 +12,19 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<!-- interceptor -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/login**"/>
+			<exclude-mapping path="/logout**"/>
+			<exclude-mapping path="/resources**"/>
+			<exclude-mapping path="/resources/**"/>
+			<beans:bean class="com.ds.sts1.interceptor.MainInterceptor">
+			</beans:bean>
+		</interceptor>
+	</interceptors>
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -22,7 +35,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.ds.sts1" />
-	
+	<context:component-scan base-package="com.ds.sts1.websocket" />
 	<!-- 파일 업로드 용량 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="1024000000"/>

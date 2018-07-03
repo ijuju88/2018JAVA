@@ -1,6 +1,7 @@
 package com.ds.sts1;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +50,8 @@ public class AdminController {
 			List<V1_Member> list1 = mDAO.selectMemberList();
 
 			request.setAttribute("list1", list1); 
-		}else if(menu.equals("0") || menu.equals("")) {
-
+		}else if(menu.equals("0") && menu.equals("")) {
+			return "admin.do";
 		}
 
 		return "admin"; //admin.jsp 화면에 표시
@@ -101,7 +102,7 @@ public class AdminController {
 
 
 	//localhost/sts1/item-select-img.do?itm_no=33&itm_img_idx=3
-	@RequestMapping(value="item-select-img.do")
+	@RequestMapping(value= {"item-select-img.do"})
 	public ResponseEntity<byte[]> itemSelectImg(HttpServletRequest request, HttpServletResponse response) {
 		HttpHeaders header=new HttpHeaders();
 		header.setContentType(MediaType.IMAGE_JPEG);
@@ -122,15 +123,13 @@ public class AdminController {
 				tmp=vo.getItm_img3();
 			}
 
-			
-			
 			//실제 데이터, header, 상태
 			return  new ResponseEntity<byte[]>(tmp, header, HttpStatus.OK);
 
 
 		} catch (Exception e) {
 			try{
-				
+
 				InputStream is=request.getSession().getServletContext().getResourceAsStream("/resources/img/default.png");
 
 				//읽은 파일을 byte[]로 변환
@@ -150,4 +149,47 @@ public class AdminController {
 
 
 	}
+
+
+		//물품개별수정 
+		@RequestMapping(value="admin-item-update.do", method= RequestMethod.GET)
+	public void edititem(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			
+			String no=(String) request.getParameter("no");
+
+			V1_Item vo=iDAO.selectupdateItemOne(Integer.parseInt(no));
+			request.setAttribute("vo", vo);
+			
+		} catch (Exception e) {
+			System.out.println("회원수정 컨트롤러 에러 : "+e.getMessage());
+		}
+
+	}
+
+	//선택삭제
+
+	@RequestMapping(value= "admin_delete_item_chk.do", method=RequestMethod.POST)
+	public String adic(HttpServletRequest request, HttpServletResponse response) {
+		try {
+
+			List<Integer> list=new ArrayList<Integer>();
+			String[] no=request.getParameterValues("chk2[]");
+			for (int i = 0; i < no.length; i++) {
+				//System.out.println("선택번호 : "+no[i]);
+				list.add(Integer.parseInt(no[i]));
+			}
+			iDAO.deleteItemChk(list);
+
+			return "redirect:admin.do?menu=1";
+
+		} catch (Exception e) {
+			System.out.println("선택삭제 컨트롤러 에러 : "+e.getMessage());
+		}
+
+
+		return "redirect:admin.do?menu=1";
+
+	}
+
 }

@@ -16,6 +16,7 @@
 	</properties>
 
 	<repositories>
+		
 		<repository>
 			<id>oracle</id>
 			<name>ORACLE JDBC Repository</name>
@@ -53,6 +54,27 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160212</version>
+		</dependency>
+		
+		<!-- websocket START-->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160212</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>	
+		<!-- websocket END-->
+		
 
 		<dependency>
 			<groupId>org.springframework</groupId>

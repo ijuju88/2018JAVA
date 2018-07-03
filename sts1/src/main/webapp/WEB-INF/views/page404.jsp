@@ -13,7 +13,7 @@
 			<div class="card-body">
 				<h5 class="card-title">페이지오류</h5>
 				<p class="card-text">페이지가 존재하지 않습니다. 아래의 홈버튼을 누르세여 >_0</p>
-				<a href="home.do" class="btn btn-primary">home~~~</a>
+				<a href="/sts1" class="btn btn-primary">home~~~</a>
 			</div>
 		</div>
 	</div>

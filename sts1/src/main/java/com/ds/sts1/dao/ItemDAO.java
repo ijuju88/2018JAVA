@@ -41,4 +41,24 @@ public class ItemDAO {
 		return sqlSession.selectOne("V1_Item.selectImgThree", no);
 
 	}
+
+
+	//사용자용 이미지
+	public V1_Item selectItemImg(int no) {
+		return sqlSession.selectOne("V1_Item.selectImgAll", no);
+	}
+
+
+	//선택지우기
+	public int deleteItemChk(List<Integer> list) {
+		return sqlSession.selectOne("V1_Item.deleteItem", list);
+		
+	}
+
+
+	//선택수정
+	public V1_Item selectupdateItemOne(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("V1_Item.selectupdateItemOne", no);
+	}
 }

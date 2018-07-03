@@ -3,8 +3,9 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-    /WEB-INF/spring/root-context.xml
+   	  /WEB-INF/spring/root-context.xml
       /WEB-INF/mybatis/mybatis-context.xml
+      /WEB-INF/websocket/websocket-context.xml
     </param-value>
   </context-param>
   <listener>

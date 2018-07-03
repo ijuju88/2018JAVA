@@ -4,6 +4,8 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ page session="false"%>
 <html>
 <head>
@@ -18,19 +20,84 @@
 
 
 <link rel="stylesheet" href="resources/css/bootstrap.min.css?var=2">
-<script src="resources/js/jquery-3.2.1.js?var=2"></script>
+<script src="resources/js/jquery-3.2.1.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=2"></script>
-<script src="resources/js/bootstrap.min.js?var=2"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+
+<script src="resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="resources/css/sweetalert2.min.css">
 
 
 <script>
 	$(function() {
 		feather.replace();
 
+		//물품추가
 		$('#btn-insert-item').click(function() {
 			$('#insert-item-modal').modal('show');
 		});
+
+		
+		
+		
+		$('.btn-update').click(function(){
+			
+			
+			 var idx = $(this).index('.btn-update');
+			 var item_no = $('.td-itm-no').eq(idx).text();
+			 //alert(item_no);
+			 
+			 
+			//물품 개별 수정
+			
+				$('#update-item-modal').modal('show');
+
+			
+				$('#update-item-modal').on('shown.bs.modal', function() {
+					$.get('admin-item-update.do?no=' + item_no, function(data) {
+
+						alert(data);
+						//alert($('#itm_no').val(data.itm_no));
+						
+					}, 'json');
+				});
+				
+		 });
+
+		
+		
+		
+
+
+		//체크박스 전체체크 및 해제
+		$('#chk1').change(function() {
+			if ($(this).is(":checked")) {
+				$('.chk2').prop('checked', true);
+			}else{
+				$('.chk2').prop('checked', false);
+			}
+		});
+		
+		
+		
+		$('#btn-dalete-all').click(function() {
+			swal({
+				  title: '삭제',
+				  text: "삭제할건가요?",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '지울겁니다'
+				}).then((result) => {
+				  if (result.value) {
+				    $('#form1').submit();
+				  }
+				})
+		});
+		
+		
 
 	});
 </script>
@@ -92,18 +159,22 @@
 					</c:when>
 
 					<c:when test="${param.menu==1}">
-						<h1 class="h2">물품관리</h1>
+
+						<form id="form1" action="admin_delete_item_chk.do" method="post">
+							<h1 class="h2">물품관리</h1>
 			</div>
 
 			<div class="table-responsive">
 				<a href="#" id="btn-insert-item"
-					class="btn btn-sm btn-outline-secondary">물품추가</a> <a href="#"
-					class="btn btn-sm btn-outline-secondary">전체삭제</a> <a href="#"
-					class="btn btn-sm btn-outline-secondary">전체수정</a>
+					class="btn btn-sm btn-outline-secondary">물품추가</a> <input
+					type="button" id="btn-dalete-all"
+					class="btn btn-sm btn-outline-secondary" value="전체삭제">
+				<!-- <a href="#" class="btn btn-sm btn-outline-secondary">전체삭제</a> -->
+				<a href="#" class="btn btn-sm btn-outline-secondary">전체수정</a>
 				<table class="table table-striped table-sm">
 					<thead align="center">
 						<tr>
-							<th><input type="checkbox"></th>
+							<th><input type="checkbox" id="chk1"></th>
 							<th>번호</th>
 							<th>이름</th>
 							<th>내용</th>
@@ -126,34 +197,46 @@
 						<c:forEach var="iDAO" items="${list}">
 							<tbody align="center">
 								<tr>
-									<th><input type="checkbox"></th>
-									<td>${iDAO.itm_no}</td>
+									<th><input type="checkbox" name='chk2[]'
+										value="${iDAO.itm_no}" class="chk2"></th>
+									<td class="td-itm-no">${iDAO.itm_no}</td>
 									<td>${iDAO.itm_name}</td>
 
 									<c:choose>
 										<c:when test="${fn:length(iDAO.itm_content)>10}">
-											<td><c:out value="${fn:substring(iDAO.itm_content,0,10)}" /> ....</td>
+											<td><c:out
+													value="${fn:substring(iDAO.itm_content,0,10)}" /> ....</td>
 										</c:when>
 										<c:otherwise>
 											<td>${iDAO.itm_content}</td>
 										</c:otherwise>
 									</c:choose>
 
-									<td>${iDAO.itm_price}</td>
-									<td>${iDAO.itm_qty}</td>			
-									<td><img src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=1" width="50px"/></td>
-									<td><img src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=2" width="50px"/></td>
-									<td><img src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=3" width="50px"/></td>
+									<td><fmt:formatNumber value="${iDAO.itm_price}"
+											pattern="#,###" />원</td>
+									<td>${iDAO.itm_qty}</td>
+									<td><img
+										src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=1"
+										width="50px" /></td>
+									<td><img
+										src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=2"
+										width="50px" /></td>
+									<td><img
+										src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=3"
+										width="50px" /></td>
 									<td>${iDAO.itm_date}</td>
-									<td><a href="#" class="btn btn-sm btn-outline-secondary">수정</a>
-										<a href="#" class="btn btn-sm btn-outline-secondary">삭제</a></td>
+									<td><a href="#" id="btn-update-item"
+										class="btn btn-sm btn-outline-secondary btn-update">수정</a> <a
+										href="#" class="btn btn-sm btn-outline-secondary">삭제</a></td>
 								</tr>
 						</c:forEach>
 					</c:if>
 					</tbody>
 				</table>
 			</div>
+			</form>
 			</c:when> <c:when test="${param.menu==2}">
+
 				<h1 class="h2">회원관리</h1>
 		</div>
 
@@ -210,6 +293,65 @@
 						<div class="form-inline">
 							<label>물품번호</label> <input type="text" name="itm_no"
 								class="form-control" readonly value="${no}">
+						</div>
+
+						<div class="form-inline">
+							<label>물품이름</label> <input type="text" name="itm_name"
+								class="form-control">
+						</div>
+
+						<div class="form-inline">
+							<label>물품설명</label>
+							<textarea name="itm_content" rows="6" style="width: 400px"></textarea>
+						</div>
+
+						<div class="form-inline">
+							<label>물품가격</label> <input type="text" name="itm_price"
+								class="form-control">
+						</div>
+
+						<div class="form-inline">
+							<label>재고수량</label> <select name="itm_qty">
+								<c:forEach var="i" begin="1" end="1000" step="1">
+									<option value="${i}">${i}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<c:forEach var="i" begin="1" end="3" step="1">
+							<div class="form-inline">
+								<label>이미지들</label> <input type="file" name="itm_img${i}"
+									class="form-control">
+							</div>
+						</c:forEach>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-primary" value="등록">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+	<!-- 물품개별수정 모달창  -->
+	<form action="admin-item-update.do" method="post"
+		enctype="multipart/form-data">
+		<div class="modal fade bd-example-modal-lg" id="update-item-modal">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">물품수정</h5>
+					</div>
+
+					<div class="modal-body">
+						<div class="form-inline">
+							<label>물품번호</label> <input type="text" name="itm_no" id="itm_no" 
+								class="form-control" readonly value="${iDAO.itm_no}">
 						</div>
 
 						<div class="form-inline">

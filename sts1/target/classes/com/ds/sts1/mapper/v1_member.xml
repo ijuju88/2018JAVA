@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="V1_Member">
-	
+
+	<!-- 회원가입-->
 	<insert id="memberJoin"  useGeneratedKeys="false" parameterType="V1_Member">
 	INSERT INTO V1_MEMBER VALUES(#{mem_id},#{mem_pw},#{mem_name},#{mem_age},#{mem_email},SYSDATE)
 	</insert>
@@ -11,8 +12,26 @@
 		SELECT * FROM V1_MEMBER ORDER BY MEM_ID ASC
 	</select>
 	
+	<!-- 로그인 -->
 	<select id="selectMemberLogin" resultType="V1_Member" parameterType="V1_Member">
 		SELECT MEM_ID, MEM_NAME FROM V1_MEMBER WHERE MEM_ID=#{mem_id} AND MEM_PW=#{mem_pw}
+	</select>
+	
+	<!-- 회원수정 id값으로... -->
+	<select id="selectMemberOne" resultType="V1_Member" parameterType="String">
+		SELECT * FROM V1_MEMBER WHERE MEM_ID=#{id}
+	</select>
+	
+	<!-- 회원수정 pw 값 없으면 -->
+	<select id="updateMemberOne"  parameterType="V1_Member">
+		UPDATE V1_MEMBER SET MEM_NAME=#{mem_name}, MEM_AGE=#{mem_age}, MEM_EMAIL=#{mem_email}
+		 WHERE MEM_ID=#{mem_id}
+	</select>
+	
+	<!-- 회원수정 pw 값 있으면 -->
+	<select id="updateMemberOne1"  parameterType="V1_Member">
+		UPDATE V1_MEMBER SET MEM_PW=#{mem_pw}, MEM_NAME=#{mem_name}, MEM_AGE=#{mem_age}, MEM_EMAIL=#{mem_email}
+		 WHERE MEM_ID=#{mem_id}
 	</select>
 	
 </mapper>
