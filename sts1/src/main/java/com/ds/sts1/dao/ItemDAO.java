@@ -57,8 +57,24 @@ public class ItemDAO {
 
 
 	//선택수정
-	public V1_Item selectupdateItemOne(int no) {
+	public V1_Item selectEditItemOne(int no) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("V1_Item.selectupdateItemOne", no);
+		return sqlSession.selectOne("V1_Item.selectEditItemOne", no);
 	}
+
+
+	
+	//한개삭제
+	public void deleteItem(int no) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("V1_Item.deleteOne", no);
+	}
+
+
+	//선태수정후
+	public int updateItemOne(V1_Item vo) {
+		return sqlSession.selectOne("V1_Item.updateItemOne", vo);
+		
+	}
+	
 }

@@ -15,8 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -57,8 +59,61 @@ public class AdminController {
 		return "admin"; //admin.jsp 화면에 표시
 
 	}
+	
+		
+	//물품개별수정
+	@RequestMapping(value="admin-item-edit.do", method=RequestMethod.POST)
+	public String adminUpdateItem
+	(HttpServletRequest request, HttpServletResponse response, 
+	MultipartHttpServletRequest mrequest, 
+	@RequestParam(value="itm_no") int itm_no, 
+	@RequestParam(value="itm_name") String itm_name,
+	@RequestParam(value="itm_content") String itm_content,
+	@RequestParam(value="itm_price") int itm_price,
+	@RequestParam(value="itm_qty") int itm_qty
+			) {
+		try {
+			V1_Item vo=new V1_Item();
+			
+			vo.setItm_no(itm_no);
+			vo.setItm_name(itm_name);
+			vo.setItm_content(itm_content);
+			vo.setItm_price(itm_price);
+			vo.setItm_qty(itm_qty);
+			
+			//input type="file"
+			MultipartFile itm_img1=mrequest.getFile("itm_imgs1");
+			MultipartFile itm_img2=mrequest.getFile("itm_imgs2");
+			MultipartFile itm_img3=mrequest.getFile("itm_imgs3");
+
+			//System.out.println("img3 : "+itm_img3.getOriginalFilename());
+			//System.out.println("vo : "+vo.toString());
+
+			if((itm_img1 != null) && (!itm_img1.getOriginalFilename().equals(""))) {
+				vo.setItm_img1(itm_img1.getBytes());
+			}
+
+			if((itm_img2 != null) && (!itm_img2.getOriginalFilename().equals(""))) {
+				vo.setItm_img2(itm_img2.getBytes());
+			}
+
+			if((itm_img3 != null) && (!itm_img3.getOriginalFilename().equals(""))) {
+				vo.setItm_img3(itm_img3.getBytes());
+			}
 
 
+			iDAO.updateItemOne(vo);
+			return "redirect:admin.do?menu=1";
+
+			
+		} catch (Exception e) {
+			System.err.println("물품수정 컨트롤러 에러 : "+e.getMessage());
+			
+		}
+		return "redirect:admin.do?menu=1";
+	}
+
+	//물품등록
 	@RequestMapping(value="admin-item-insert.do", method=RequestMethod.POST)
 	public String adminInsertItem
 	(HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest mrequest) {
@@ -111,8 +166,7 @@ public class AdminController {
 			String idx=request.getParameter("itm_img_idx");
 
 			V1_Item vo = iDAO.selectItemImg(Integer.parseInt(no),Integer.parseInt(idx));
-
-
+			
 			byte[] tmp=null;
 
 			if(idx.equals("1")) {
@@ -151,22 +205,6 @@ public class AdminController {
 	}
 
 
-		//물품개별수정 
-		@RequestMapping(value="admin-item-update.do", method= RequestMethod.GET)
-	public void edititem(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			
-			String no=(String) request.getParameter("no");
-
-			V1_Item vo=iDAO.selectupdateItemOne(Integer.parseInt(no));
-			request.setAttribute("vo", vo);
-			
-		} catch (Exception e) {
-			System.out.println("회원수정 컨트롤러 에러 : "+e.getMessage());
-		}
-
-	}
-
 	//선택삭제
 
 	@RequestMapping(value= "admin_delete_item_chk.do", method=RequestMethod.POST)
@@ -191,5 +229,25 @@ public class AdminController {
 		return "redirect:admin.do?menu=1";
 
 	}
+
+
+
+	//한개삭제
+	@RequestMapping(value="admin_delete_item_one.do", method= {RequestMethod.GET})
+	public String adio
+	(HttpServletRequest request, HttpServletResponse response, @RequestParam("itm_no") int no) {
+		try {
+
+			System.out.println("삭제 번호 : "+no);
+			iDAO.deleteItem(no);
+
+		} catch (Exception e) {
+			System.out.println("한개삭제 컨트롤러 에러 : "+e.getMessage());
+
+		}
+		return "redirect:admin.do?menu=1";
+	}
+
+
 
 }

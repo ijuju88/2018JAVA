@@ -35,7 +35,8 @@
 	<select id="selectImgAll" parameterType="int" resultMap="maps">
 		SELECT
 		NVL(ITM_IMG1, EMPTY_BLOB()) ITM_IMG1,
-		NVL(ITM_IMG2, EMPTY_BLOB()) ITM_IMG2,
+		NVL(ITM_IMG2, EMPTY_BLOB())
+		ITM_IMG2,
 		NVL(ITM_IMG3, EMPTY_BLOB()) ITM_IMG3
 		FROM
 		V1_ITEM
@@ -43,7 +44,7 @@
 		ITM_NO=#{no}
 	</select>
 
-
+	
 	<!-- 숫자 한개만 넘어오는 경우는 변수명은 상관없음 -->
 	<select id="selectImgOne" parameterType="int" resultMap="maps">
 		SELECT
@@ -78,8 +79,8 @@
 	</insert>
 
 	<!-- 물품삭제 -->
-	<!-- foreach  http://fruitdev.tistory.com/187 -->
-	
+	<!-- foreach http://fruitdev.tistory.com/187 -->
+
 	<delete id="deleteItem" parameterType="java.util.List">
 		DELETE FROM V1_ITEM WHERE ITM_NO IN
 		(
@@ -89,10 +90,26 @@
 		</foreach>
 		)
 	</delete>
-	
-	<!-- 물품수정-->
-	<select id="selectupdateItemOne" resultType="com.ds.sts1.vo.V1_Item" parameterType="int">
-		SELECT * FROM V1_ITEM WHERE ITM_NO=#{no}
+
+	<!-- 물품수정 -->
+	<select id="selectEditItemOne" resultType="com.ds.sts1.vo.V1_Item"  parameterType="int"> 
+		SELECT * FROM V1_ITEM WHERE ITM_NO=#{no} 
 	</select>
 	
+	<!-- 물품수정후 -->
+	<select id="updateItemOne" parameterType="com.ds.sts1.vo.V1_Item"> 
+		UPDATE V1_ITEM SET ITM_NAME=#{itm_name}, ITM_CONTENT=#{itm_content}, 
+		ITM_PRICE=#{itm_price}, ITM_QTY=#{itm_qty}, 
+		ITM_IMG1=#{itm_img1, jdbcType=BLOB},
+		ITM_IMG2=#{itm_img2, jdbcType=BLOB},
+		ITM_IMG3=#{itm_img3, jdbcType=BLOB}
+		 WHERE ITM_NO=#{itm_no}
+	</select>
+
+	<!-- 물품한개삭제 -->
+	<delete id="deleteOne" parameterType="int">
+		DELETE FROM V1_ITEM
+		WHERE ITM_NO=#{no}
+	</delete>
+
 </mapper>

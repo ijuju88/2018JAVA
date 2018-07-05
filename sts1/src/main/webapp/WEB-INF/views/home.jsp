@@ -3,6 +3,7 @@
 <!DOCTYPE>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page session="true"%>
 <html>
 <head>
@@ -54,7 +55,7 @@
 
 	<div
 		class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-		<h1 class="display-4">Pricing</h1>
+		<h1 class="display-4">Page</h1>
 		<p class="lead">Quickly build an effective pricing table for your
 			potential customers with this Bootstrap example. It's built with
 			default Bootstrap components and utilities with little customization.
@@ -66,49 +67,47 @@
 		</c:if>
 		<c:if test="${! empty list}">
 			<div class="card-deck mb-3 text-center">
+				
+					<c:forEach var="iDAO" items="${list}"  varStatus="status">
+						<div class="card mb-3 box-shadow">
+							<div class="card-header">
+								<h4 class="my-0 font-weight-normal">${iDAO.itm_name}</h4>
 
-				<c:forEach var="iDAO" items="${list}">
-					<div class="card mb-3 box-shadow">
-						<div class="card-header">
-							<h4 class="my-0 font-weight-normal">${iDAO.itm_name}</h4>
+								<div class="slider-nav" id="slides${status.count}">
 
+									<div>
+										<img class="card-img-top"
+											src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=1" />
+									</div>
+									<div>
+										<img class="card-img-top"
+											src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=2" />
+									</div>
+									<div>
+										<img class="card-img-top"
+											src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=3" />
+									</div>
 
-							<div class="slider-nav" id="slides${iDAO.itm_no}">
-								<div>
-									<img class="card-img-top"
-										src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=1" />
-								</div>
-								<div>
-									<img class="card-img-top"
-										src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=2" />
-								</div>
-								<div>
-									<img class="card-img-top"
-										src="item-select-img.do?itm_no=${iDAO.itm_no}&itm_img_idx=3" />
-								</div>
-
-								<%--  <div>
+									<%--  <div>
 									<img class="card-img-top"
 										src="item_img.do?itm_no=${iDAO.itm_no}" />
 								</div>  --%>
+								</div>
 							</div>
-
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title">
+									<fmt:formatNumber value="${iDAO.itm_price}" pattern="#,###" />
+									원 <small class="text-muted">/개당</small>
+								</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<li>${iDAO.itm_content}</li>
+								</ul>
+								<a type="button" href="#" class="btn btn-outline-primary">
+									구매하기</a> <a type="button" href="#" class="btn btn-outline-primary">
+									장바구니</a>
+							</div>
 						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">
-								<fmt:formatNumber value="${iDAO.itm_price}" pattern="#,###" />원
-								<small class="text-muted">/개당</small>
-							</h1>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li>${iDAO.itm_content}</li>
-							</ul>
-							<a type="button" href="#" class="btn btn-outline-primary">
-								구매하기</a> <a type="button" href="#" class="btn btn-outline-primary">
-								장바구니</a>
-						</div>
-					</div>
-				</c:forEach>
-
+					</c:forEach>
 			</div>
 		</c:if>
 		<footer class="pt-4 my-md-5 pt-md-5 border-top ">
@@ -162,8 +161,8 @@
 		$(function() {
 			var headers = $('.slider-nav');
 			for (var i = 1; i <= headers.length; i++) {
-				alert(i);
-				$('#slides' + i).slidesjs({
+				//alert(i);
+				$('#slides'+i).slidesjs({
 					width : 940,
 					height : 650,
 					navigation : {
