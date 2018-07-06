@@ -7,25 +7,62 @@ public class V1_Board {
 	private String brd_title=null; 
 	private String brd_writer=null;
 	private String brd_content=null; //CLOB
-	private int brd_hit=0; 
-	private String brd_hit1=null; 
+	private int brd_hit=1; 
 	private byte[] brd_img=null;//BLOB
 	private String brd_date=null;
-	private String brd_file=null;
+	
+	
+	//select를 위한 임시 vo변수
+	private String slist=null;
+	private String[] Slistary=null;
 	
 	public V1_Board() {
 		super();
 	}
 	
-	public V1_Board(int brd_no, String brd_title, String brd_writer, String brd_content, String brd_file) {
+	
+	public V1_Board(int brd_no, String brd_title, String brd_writer, String brd_content) {
 		super();
 		this.brd_no = brd_no;
 		this.brd_title = brd_title;
 		this.brd_writer = brd_writer;
 		this.brd_content = brd_content;
-		this.brd_file = brd_file;
 	}
+
+	public V1_Board(int brd_no, String brd_title, String brd_writer, String brd_content, int brd_hit, byte[] brd_img,
+			String brd_date, String slist, String[] slistary) {
+		super();
+		this.brd_no = brd_no;
+		this.brd_title = brd_title;
+		this.brd_writer = brd_writer;
+		this.brd_content = brd_content;
+		this.brd_hit = brd_hit;
+		this.brd_img = brd_img;
+		this.brd_date = brd_date;
+		this.slist = slist;
+		Slistary = slistary;
+	}
+
+
+
+	public V1_Board(int brd_no, String brd_title, String brd_writer, String brd_content, int brd_hit, byte[] brd_img,
+			String brd_date) {
+		super();
+		this.brd_no = brd_no;
+		this.brd_title = brd_title;
+		this.brd_writer = brd_writer;
+		this.brd_content = brd_content;
+		this.brd_hit = brd_hit;
+		this.brd_img = brd_img;
+		this.brd_date = brd_date;
+	}
+
 	
+
+
+
+
+
 
 	public int getBrd_no() {
 		return brd_no;
@@ -58,12 +95,7 @@ public class V1_Board {
 		this.brd_hit = brd_hit;
 	}
 	
-	public String getBrd_hit1() {
-		return brd_hit1;
-	}
-	public void setBrd_hit1(String brd_hit1) {
-		this.brd_hit1 = brd_hit1;
-	}
+	
 	public byte[] getBrd_img() {
 		return brd_img;
 	}
@@ -77,21 +109,37 @@ public class V1_Board {
 	public void setBrd_date(String brd_date) {
 		this.brd_date = brd_date;
 	}
-	public String getBrd_file() {
-		return brd_file;
+
+
+	public String getSlist() {
+		return slist;
 	}
-	public void setBrd_file(String brd_file) {
-		this.brd_file = brd_file;
+
+
+	public void setSlist(String slist) {
+		this.slist = slist;
 	}
+
+
+
+	public String[] getSlistary() {
+		return Slistary;
+	}
+
+
+
+	public void setSlistary(String[] slistary) {
+		Slistary = slistary;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "V1_Board [brd_no=" + brd_no + ", brd_title=" + brd_title + ", brd_writer=" + brd_writer
-				+ ", brd_content=" + brd_content + ", brd_hit=" + brd_hit + ", brd_hit1=" + brd_hit1 + ", brd_img="
-				+ Arrays.toString(brd_img) + ", brd_date=" + brd_date + ", brd_file=" + brd_file + "]";
+				+ ", brd_content=" + brd_content + ", brd_hit=" + brd_hit + ", brd_date=" + brd_date + "]";
 	}
 	
-	
-	
-	
+
 	
 }

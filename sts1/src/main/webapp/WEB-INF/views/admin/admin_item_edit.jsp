@@ -29,7 +29,7 @@
 	<!-- 물품개별수정 모달창  -->
 	<form action="admin-item-edit.do" method="post"
 		enctype="multipart/form-data" >
-		<div class="modal fade bd-example-modal-lg" id="update-item-modal">
+		<div class="modal fade bd-example-modal-lg" id="update-list-modal">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">

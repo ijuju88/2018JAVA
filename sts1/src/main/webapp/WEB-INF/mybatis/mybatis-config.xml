@@ -15,6 +15,7 @@
  
  <typeAliases>
  	<typeAlias alias="V1_Member" type="com.ds.sts1.vo.V1_Member"/>
+ 	<typeAlias alias="V1_Board" type="com.ds.sts1.vo.V1_Board"/>
  </typeAliases>
  
 </configuration>

@@ -88,7 +88,15 @@ public class MemberController {
 
 				String backurl=(String)httpsession.getAttribute("BACK_URL");
 				request.setAttribute("msg", "로그인성공");
-				request.setAttribute("url", backurl);
+				
+				System.out.println("자른글자 : "+backurl.substring(0, 4));
+				
+				if(backurl.substring(0, 4).equals("item")) {
+					request.setAttribute("url", "home.do");
+				}else
+				{
+					request.setAttribute("url", backurl);
+				}
 				
 				return "alert";
 			}

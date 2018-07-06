@@ -45,8 +45,8 @@
 		</ul>
 	</nav>
 
-	<jsp:include page="admin/admin_sidemenu.jsp"></jsp:include>
-
+<jsp:include page="admin/admin_sidemenu.jsp"></jsp:include>
+	
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 			<div
 				class="d-flex justify-content-between 

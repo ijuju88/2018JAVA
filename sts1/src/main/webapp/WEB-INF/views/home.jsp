@@ -25,50 +25,25 @@
 
 <body>
 
-	<div
-		class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-		<h5 class="my-0 mr-md-auto font-weight-normal">Ge 마켓</h5>
+	<jsp:include page="home/hometitle.jsp" />
 
-		<c:choose>
-			<c:when test="${sessionScope.SID eq null}">
-				<nav class="my-2 my-md-0 mr-md-3">
-					<a class="p-2 text-dark" href="join.do">회원가입</a> <a
-						class="p-2 text-dark" href="mypage.do">나의쇼핑</a> <a
-						class="p-2 text-dark" href="cart.do">장바구니</a>
-				</nav>
-				<a class="btn btn-outline-primary" href="login.do">로그인</a>
-				<a class="btn btn-outline-primary" href="admin.do?menu=0">관리자(임시)</a>
-			</c:when>
-			<c:otherwise>
-				<nav class="my-2 my-md-0 mr-md-3">
-					<a class="p-2 text-dark" href="edit.do">회원수정</a> <a
-						class="p-2 text-dark" href="mypage.do">${sessionScope.SNAME}님의
-						쇼핑</a> <a class="p-2 text-dark" href="cart.do">장바구니</a> <a
-						class="p-2 text-dark" href="chatting.do">실시간채팅</a>
-				</nav>
-				<a class="btn btn-outline-primary" href="logout.do">로그아웃</a>
-				<a class="btn btn-outline-primary" href="admin.do?menu=0">관리자(임시)</a>
-			</c:otherwise>
-		</c:choose>
+	<div class="content" id="content">
+		<div
+			class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+			<h1 class="display-4">Page</h1>
+			<p class="lead">Quickly build an effective pricing table for your
+				potential customers with this Bootstrap example. It's built with
+				default Bootstrap components and utilities with little
+				customization. )/o_o/)</p>
+		</div>
 
-	</div>
+		<div class="container">
+			<c:if test="${empty list}">
+			</c:if>
+			<c:if test="${! empty list}">
+				<div class="card-deck mb-3 text-center">
 
-	<div
-		class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-		<h1 class="display-4">Page</h1>
-		<p class="lead">Quickly build an effective pricing table for your
-			potential customers with this Bootstrap example. It's built with
-			default Bootstrap components and utilities with little customization.
-			)/o_o/)</p>
-	</div>
-
-	<div class="container">
-		<c:if test="${empty list}">
-		</c:if>
-		<c:if test="${! empty list}">
-			<div class="card-deck mb-3 text-center">
-				
-					<c:forEach var="iDAO" items="${list}"  varStatus="status">
+					<c:forEach var="iDAO" items="${list}" varStatus="status">
 						<div class="card mb-3 box-shadow">
 							<div class="card-header">
 								<h4 class="my-0 font-weight-normal">${iDAO.itm_name}</h4>
@@ -108,44 +83,13 @@
 							</div>
 						</div>
 					</c:forEach>
-			</div>
-		</c:if>
-		<footer class="pt-4 my-md-5 pt-md-5 border-top ">
-			<div class="row">
-				<div class="col-12 col-md">
-					<img class="mb-2"
-						src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg"
-						alt="" width="24" height="24"> <small
-						class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-				</div>
-				<div class="col-6 col-md">
-					<h5>Features</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="#">Cool stuff</a></li>
-						<li><a class="text-muted" href="#">Random feature</a></li>
-						<li><a class="text-muted" href="#">Team feature</a></li>
-						<li><a class="text-muted" href="#">Stuff for developers</a></li>
-						<li><a class="text-muted" href="#">Another one</a></li>
-						<li><a class="text-muted" href="#">Last time</a></li>
-					</ul>
-				</div>
+			</c:if>
 
-				<div class="col-6 col-md">
-					<h5>Features</h5>
-					<ul class="list-unstyled text-small">
-						<li><a class="text-muted" href="#">Cool stuff</a></li>
-						<li><a class="text-muted" href="#">Random feature</a></li>
-						<li><a class="text-muted" href="#">Team feature</a></li>
-						<li><a class="text-muted" href="#">Stuff for developers</a></li>
-						<li><a class="text-muted" href="#">Another one</a></li>
-						<li><a class="text-muted" href="#">Last time</a></li>
-					</ul>
-				</div>
-
-			</div>
-		</footer>
+		</div>
 	</div>
 
+
+	<jsp:include page="home/homefooter.jsp" />
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -162,7 +106,7 @@
 			var headers = $('.slider-nav');
 			for (var i = 1; i <= headers.length; i++) {
 				//alert(i);
-				$('#slides'+i).slidesjs({
+				$('#slides' + i).slidesjs({
 					width : 940,
 					height : 650,
 					navigation : {

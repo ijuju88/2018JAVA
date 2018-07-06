@@ -99,10 +99,16 @@
 	<!-- 물품수정후 -->
 	<select id="updateItemOne" parameterType="com.ds.sts1.vo.V1_Item"> 
 		UPDATE V1_ITEM SET ITM_NAME=#{itm_name}, ITM_CONTENT=#{itm_content}, 
-		ITM_PRICE=#{itm_price}, ITM_QTY=#{itm_qty}, 
-		ITM_IMG1=#{itm_img1, jdbcType=BLOB},
-		ITM_IMG2=#{itm_img2, jdbcType=BLOB},
-		ITM_IMG3=#{itm_img3, jdbcType=BLOB}
+		ITM_PRICE=#{itm_price}, ITM_QTY=#{itm_qty}
+		<if test="itm_img1 != null">
+			,ITM_IMG1=#{itm_img1, jdbcType=BLOB}
+		</if>
+		<if test="itm_img2 != null">
+		,ITM_IMG2=#{itm_img2, jdbcType=BLOB}
+		</if>
+		<if test="itm_img3 != null">
+		,ITM_IMG3=#{itm_img3, jdbcType=BLOB}
+		</if>
 		 WHERE ITM_NO=#{itm_no}
 	</select>
 

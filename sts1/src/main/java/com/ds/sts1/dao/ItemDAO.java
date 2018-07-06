@@ -17,19 +17,23 @@ public class ItemDAO {
 	@Resource(name="sqlSession")
 	private SqlSession sqlSession = null;
 
+	//물품리스트
 	public List<V1_Item> selectItem (){
 		return sqlSession.selectList("V1_Item.selectItem");
 	}
 
 
+	//추가용물품번호추가
 	public int selectItemNo() {
 		return sqlSession.selectOne("V1_Item.selectItemNo");
 	}
 
+	//물품번호
 	public int insertItemOne(V1_Item vo) {
 		return sqlSession.selectOne("V1_Item.insertItemOne", vo);
 	}
 
+	//이미지 출력용
 	public V1_Item selectItemImg(int no, int idx) {
 		if(idx == 1) {
 			return sqlSession.selectOne("V1_Item.selectImgOne", no);
