@@ -11,13 +11,8 @@
 <title>Insert title here</title>
 </head>
 
-<link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/edit.css">
-<script src="resources/js/bootstrap.js"></script>
-<script src="resources/js/jquery-3.2.1.js"></script>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
 <body>
+<jsp:include page="../home/hometitle.jsp" />
 	<div class="container" style="width: 60%;">
 
 		<div
@@ -57,6 +52,7 @@
 			document.getElementById('brd_insert_writer').readOnly = true;
 		})
 	</script>
+	<jsp:include page="boarde.jsp" />
 </body>
 
 </html>

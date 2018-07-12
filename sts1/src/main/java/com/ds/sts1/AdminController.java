@@ -2,6 +2,7 @@ package com.ds.sts1;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ds.sts1.dao.ItemDAO;
+import com.ds.sts1.dao.ItemImpl;
 import com.ds.sts1.dao.MemberDAO;
+import com.ds.sts1.dao.MemberImpl;
+import com.ds.sts1.func.Config;
 import com.ds.sts1.vo.V1_Item;
 import com.ds.sts1.vo.V1_Member;
+import com.ds.sts1.vo.V1_MemberList;
 
 
 @Controller
@@ -34,12 +41,12 @@ public class AdminController {
 
 	//DAO호출
 	@Autowired
-	private ItemDAO iDAO=null;
+	private ItemImpl iDAO=null;
 	@Autowired
-	private MemberDAO mDAO=null;
+	private MemberImpl mDAO=null;
 
 	@RequestMapping(value="admin.do", method=RequestMethod.GET)
-	public String admin(HttpServletRequest request, HttpServletResponse response) {
+	public String admin(HttpServletRequest request, HttpServletResponse response,Model model) {
 
 		String menu=request.getParameter("menu");
 		if(menu.equals("1")) {
@@ -49,9 +56,17 @@ public class AdminController {
 			List<V1_Item> list = iDAO.selectItem();
 			request.setAttribute("list", list); 
 		}else if(menu.equals("2")) {
-			List<V1_Member> list1 = mDAO.selectMemberList();
-
-			request.setAttribute("list1", list1); 
+			
+			
+			List<V1_Member> list = mDAO.selectMemberList();
+			
+			//되돌려 받기위한 클래스 객체에 추가
+			V1_MemberList mlist=new V1_MemberList();
+			
+			mlist.setList(list);
+			model.addAttribute("mlist", mlist); 
+			
+			
 		}else if(menu.equals("0") && menu.equals("")) {
 			return "admin.do";
 		}
@@ -249,5 +264,28 @@ public class AdminController {
 	}
 
 
+	
+	//회원정보수정
+	@RequestMapping(value= "admin_member_update_batch.do", method=RequestMethod.POST)
+	public String adminMemberUpdateBatch(@ModelAttribute("mlist") V1_MemberList mlist) {
+		try {
+			List<V1_Member> list=  mlist.getList();
+			
+			
+			for (V1_Member vo:list) {
+				//System.out.println("List id: "+vo.getMem_id());
+				System.out.println("List name: "+vo.getMem_name());
+				//System.out.println("List age: "+vo.getMem_age());
+				//System.out.println("List email: "+vo.getMem_email());
+			}
+			mDAO.adminMemberUpdateBatch(mlist.getList());
+			
+		} catch (Exception e) {
+			System.out.println("adminMemberUpdateBatch 컨트롤러 에러 : "+e.getMessage());
+		}
+		
+		return "redirect:admin.do?menu=2";
+	
+	}
 
 }

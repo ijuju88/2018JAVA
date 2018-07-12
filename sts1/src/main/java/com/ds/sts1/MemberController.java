@@ -1,15 +1,15 @@
 package com.ds.sts1;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
+import java.util.Arrays;
 
+import javax.servlet.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.ds.sts1.dao.MemberDAO;
+import com.ds.sts1.dao.MemberImpl;
+import com.ds.sts1.func.Config;
 import com.ds.sts1.func.EncryptionClass;
 import com.ds.sts1.vo.V1_Member;
 
@@ -17,38 +17,42 @@ import com.ds.sts1.vo.V1_Member;
 public class MemberController {
 
 	@Autowired 
-	private MemberDAO mDAO=null;
+	private MemberImpl mDAO=null;
 
 	//가입
 	@RequestMapping(value="join.do", method=RequestMethod.GET)
-	private String join(HttpServletRequest request, HttpServletResponse response) {
-		return "join"; //join.jsp표시
+	private String join(Model model) {
+
+		model.addAttribute("vo", new V1_Member());
+		model.addAttribute("nlist", Config.newLetter);
+		return "member/join"; //join.jsp표시
 		//request.getRequestDispatcher("/WEB_INF/join.jsp").forward(request,response);
 
 	}
 
 	@RequestMapping(value="join.do", method=RequestMethod.POST)
-	private String joinp(HttpServletRequest request, HttpServletResponse response) {
-		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
-		String name=request.getParameter("name");
-		String age=request.getParameter("age");
-		String email=request.getParameter("email");
+	private String joinp(@ModelAttribute("vo")V1_Member vo, HttpServletRequest request) {
 
 		//입력한 암호 전달(암호화)
-		pw=EncryptionClass.convertMD5(pw);
+		String pw=EncryptionClass.convertMD5(vo.getMem_pw());
 
-		V1_Member vo=new V1_Member();
-		vo.setMem_id(id);
+		vo.setMem_id(vo.getMem_id());
 		vo.setMem_pw(pw);
-		vo.setMem_name(name);
-		vo.setMem_age(Integer.parseInt(age));
-		vo.setMem_email(email);
+		vo.setMem_name(vo.getMem_name());
+		vo.setMem_age(vo.getMem_age());
+		vo.setMem_email(vo.getMem_email());
 
-
+		
+		String[] tmp=vo.getMem_nl();
+		String atmp= Arrays.toString(tmp);
+		atmp.subSequence(1, atmp.length()-1);
+		
+		vo.setMem_item(atmp);
+		
+		System.out.println(vo.toString());
+		
 		mDAO.memberJoin(vo);
 
-		System.out.println(id+"/"+pw+"/"+name);
 
 		request.setAttribute("msg", "회원가입성공");
 		request.setAttribute("url", "home.do");
@@ -134,7 +138,7 @@ public class MemberController {
 			//id전달되면 한명의 정보 받음
 			V1_Member vo=mDAO.selectMemberOne(id);
 			request.setAttribute("vo", vo);
-			return "edit";
+			return "member/edit";
 		} catch (Exception e) {
 			System.out.println("회원수정 컨트롤러 에러 : "+e.getMessage());
 			return "redirect:home.do";

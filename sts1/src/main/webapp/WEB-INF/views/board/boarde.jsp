@@ -7,17 +7,6 @@
 <!DOCTYPE >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="resources/css/dashboard.css">
-
-<link rel="stylesheet" href="resources/css/bootstrap.min.css?var=2">
-<script src="resources/js/jquery-3.2.1.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=2"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-
-<script src="resources/js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="resources/css/sweetalert2.min.css">
 
 <title>Insert title here</title>
 

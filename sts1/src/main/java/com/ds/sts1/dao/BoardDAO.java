@@ -16,4 +16,7 @@ public interface BoardDAO {
 	
 	public int BoardUpdate(V1_Board vo); //게시판 글수정
 	public int BoardDelete(int no); //게시판 글삭제
-}
+
+	public int selectBoardPrevNo(int no);
+	public int selectBoardNextNo(int no);
+	}

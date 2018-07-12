@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ds.sts1.dao.ItemDAO;
+import com.ds.sts1.dao.ItemImpl;
 import com.ds.sts1.exception.PageNotFoundException;
 import com.ds.sts1.vo.V1_Item;
 import com.ds.sts1.vo.V1_Member;
@@ -34,7 +35,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	private ItemDAO iDAO=null;
+	private ItemImpl iDAO=null;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -66,6 +67,8 @@ public class HomeController {
 			
 			//System.out.println("item사이즈 : "+list.size());
 			request.setAttribute("list", list); 
+			
+			request.setAttribute("size", list.size() % 2);
 			return "home";
 			
 		}

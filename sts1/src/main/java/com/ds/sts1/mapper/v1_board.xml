@@ -19,7 +19,7 @@
 	</select>
 	
 	<!-- 게시판출력용 -->
-	<select id="boardlist" resultType="V1_Board" >
+	<select id="boardlist" resultType="V1_BOARD" >
 	 SELECT * FROM V1_BOARD ORDER BY BRD_NO DESC
 	</select>
 	
@@ -44,5 +44,16 @@
 	<delete id="boarddelete" parameterType="int">
 	DELETE FROM V1_BOARD WHERE BRD_NO=#{no}
 	</delete>
+	
+	<!-- 게시판이전글 -->
+	<select id="boardprevno" parameterType="int" resultType="int">
+	 SELECT NVL(MAX(BRD_NO),0) FROM V1_BOARD WHERE BRD_NO <![CDATA[<]]> #{no}
+	</select>
+	
+	<!-- 게시판다음글 -->
+	<select id="boardnextno" parameterType="int" resultType="int">
+	 SELECT NVL(MIN(BRD_NO),0) FROM V1_BOARD WHERE BRD_NO <![CDATA[>]]> #{no}
+	</select>
+	
 	
 </mapper>

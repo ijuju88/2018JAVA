@@ -3,6 +3,7 @@ package com.ds.sts1.vo;
 import java.util.Arrays;
 
 public class V1_Board {
+
 	private int brd_no=0;
 	private String brd_title=null; 
 	private String brd_writer=null;

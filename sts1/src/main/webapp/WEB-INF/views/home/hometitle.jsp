@@ -10,47 +10,64 @@
 <title>Home</title>
 </head>
 
-<!-- Custom styles for this template -->
+ 
 <link href="resources/css/pricing.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/font-awesome.min.css">
-<link rel="stylesheet" href="resources/css/bootstrap.css">
-
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 
 <script src="resources/js/jquery-3.2.1.js"></script>
+
+<script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/jquery.slides.js"></script>
 <script src="resources/js/holder.min.js"></script>
-<script src="resources/js/bootstrap.js"></script>
+
+<script src="resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="resources/css/sweetalert2.min.css">
+
 
 </head>
 
 <body>
 
-	<div
-		class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-		<h5 class="my-0 mr-md-auto font-weight-normal">Ge 마켓</h5>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="home.do">Ge 마켓</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="home.do"> home
+ 			<span class="sr-only">(current)</span></a>
+      </li>			 
 		<c:choose>
 			<c:when test="${sessionScope.SID eq null}">
-				<nav class="my-2 my-md-0 mr-md-3">
-					<a class="p-2 text-dark" href="join.do">회원가입</a> <a
-						class="p-2 text-dark" href="mypage.do">나의쇼핑</a> <a
-						class="p-2 text-dark" href="cart.do">장바구니</a>
-				</nav>
-				<a class="btn btn-outline-primary" href="login.do">로그인</a>
-				<a class="btn btn-outline-primary" href="admin.do?menu=0">관리자(임시)</a>
-			</c:when>
-			<c:otherwise>
-				<nav class="my-2 my-md-0 mr-md-3">
-					<a class="p-2 text-dark" href="edit.do">회원수정</a> <a
-						class="p-2 text-dark" href="mypage.do">${sessionScope.SNAME}님의
-						쇼핑</a> <a class="p-2 text-dark" href="cart.do">장바구니</a> <a
-						class="p-2 text-dark" href="chatting.do">실시간채팅</a> <a
-						class="p-2 text-dark" id="board_chk" href="board.do" >문의하기</a>
-				</nav>
-				<a class="btn btn-outline-primary" href="logout.do">로그아웃</a>
-				<a class="btn btn-outline-primary" href="admin.do?menu=0">관리자(임시)</a>
-			</c:otherwise>
-		</c:choose>
+						
+				<li class="nav-item"><a class="nav-link" href="join.do">회원가입</a></li>
+				<li class="nav-item"><a class="nav-link" href="mypage.do">나의쇼핑</a></li>
+				<li class="nav-item"><a class="nav-link" href="cartlist.do">장바구니</a></li>
 
-	</div>
-	</body></html>
+				<li class="nav-item"><a class="nav-link" class="btn btn-outline-primary" href="login.do">로그인</a></li>
+				<li class="nav-item"><a class="nav-link" class="btn btn-outline-primary" href="admin.do?menu=0">관리자(임시)</a> </li>
+				</c:when>
+				<c:otherwise>
+					<li class="nav-item"><a class="nav-link" href="edit.do">회원수정</a></li>
+					<li class="nav-item"><a class="nav-link" href="mypage.do">${sessionScope.SNAME}님의
+								쇼핑</a></li>
+					<li class="nav-item"><a class="nav-link" href="cartlist.do">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link" href="chatting.do">실시간채팅</a></li>
+					<li class="nav-item"><a class="nav-link" id="board_chk"
+							href="board.do">문의하기</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						class="btn btn-outline-primary" href="logout.do">로그아웃</a></li>
+					<li class="nav-item"><a class="nav-link"
+							class="btn btn-outline-primary" href="admin.do?menu=0">관리자(임시)</a></li>
+				</c:otherwise>
+				</c:choose>
+			</ul>
+		</div>
+	</nav>
+
+</body>
+</html>

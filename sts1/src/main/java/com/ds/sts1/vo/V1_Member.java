@@ -1,5 +1,7 @@
 package com.ds.sts1.vo;
 
+import java.util.Arrays;
+
 public class V1_Member {
 	private String mem_id=null;
 	private String mem_pw=null;
@@ -8,7 +10,23 @@ public class V1_Member {
 	private String mem_email=null;
 	private String mem_date=null;
 	
+	private String[] mem_nl=new String[5];
+	private String mem_item=null;
 	
+	
+	
+	public String getMem_item() {
+		return mem_item;
+	}
+	public void setMem_item(String mem_item) {
+		this.mem_item = mem_item;
+	}
+	public String[] getMem_nl() {
+		return mem_nl;
+	}
+	public void setMem_nl(String[] mem_nl) {
+		this.mem_nl = mem_nl;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -45,12 +63,14 @@ public class V1_Member {
 	public void setMem_date(String mem_date) {
 		this.mem_date = mem_date;
 	}
-	
 	@Override
 	public String toString() {
 		return "V1_Member [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_age=" + mem_age
-				+ ", mem_email=" + mem_email + ", mem_date=" + mem_date + "]";
+				+ ", mem_email=" + mem_email + ", mem_date=" + mem_date + ", mem_nl=" + Arrays.toString(mem_nl)
+				+ ", mem_item=" + mem_item + "]";
 	}
+	
+	
 
 	
 }

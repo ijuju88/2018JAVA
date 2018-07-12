@@ -63,4 +63,18 @@ public class BoardImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.update("V1_Board.boardlistuphit", no);
 	}
+
+	//이전글
+	@Override
+	public int selectBoardPrevNo(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("V1_Board.boardprevno", no);
+	}
+
+	//다음글
+	@Override
+	public int selectBoardNextNo(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("V1_Board.boardnextno", no);
+	}
 }

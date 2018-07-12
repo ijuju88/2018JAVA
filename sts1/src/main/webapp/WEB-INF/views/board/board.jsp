@@ -10,18 +10,6 @@
 <title>Home</title>
 </head>
 
-<link href="resources/css/pricing.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-<link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet"href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
-
-<script src="resources/js/jquery-3.2.1.js"></script>
-<script src="resources/js/jquery.slides.js"></script>
-<script src="resources/js/holder.min.js"></script>
-<script src="resources/js/bootstrap.js"></script>
-
-
-</head>
 <body>
 	<jsp:include page="../home/hometitle.jsp" />
 
@@ -40,23 +28,22 @@
 				<tbody>
 					<c:forEach var="result" items="${list}" varStatus="status">
 						<tr>
-							<td>${result.brd_no}</td>
-							<td><a href='boardv.do?brd_no=${result.brd_no}'>${result.brd_title}</a></td>
-							<td>${result.brd_writer}</td>
-							<td>${result.brd_hit}</td>
-							<td>${result.brd_date}</td>
+							<td style="width: 10%;">${result.brd_no}</td>
+							<td style="width: 30%;"><a href='boardv.do?brd_no=${result.brd_no}'>${result.brd_title}</a></td>
+							<td style="width: 20%;">${result.brd_writer}</td>
+							<td style="width: 10%;">${result.brd_hit}</td>
+							<td style="width: 30%;">${result.brd_date}</td>
 
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<div id="listPager"></div>
-
 			<div>
 				<a href='boardw.do' class="btn btn-primary">글쓰기</a>
 			</div>
 		</form>
-		<div class="container"></div>
+		</div>
 		<jsp:include page="../home/homefooter.jsp" />
 
 		<script
