@@ -1,7 +1,12 @@
 package com.ds.seat.vo;
 
-public class V1_Test {
+import java.io.Serializable;
 
+public class V1_Test implements Serializable {
+
+
+	private static final long serialVersionUID = 1L;
+	
 	public int no=0;
 	public String name=null;
 	public int getNo() {

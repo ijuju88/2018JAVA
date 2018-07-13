@@ -10,6 +10,7 @@
 		<param-value>
 		/WEB-INF/spring/root-context.xml
 		/WEB-INF/mybatis/mybatis-context.xml
+		/WEB-INF/redis/redis-context.xml
 		</param-value>
 	</context-param>
 

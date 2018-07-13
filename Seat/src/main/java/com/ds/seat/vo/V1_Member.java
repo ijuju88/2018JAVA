@@ -1,6 +1,12 @@
 package com.ds.seat.vo;
 
-public class V1_Member {
+import java.io.Serializable;
+
+public class V1_Member implements Serializable{
+
+	 
+	private static final long serialVersionUID = 1L;
+	
 	public int m_no=0; 
 	public String m_id=null; //아이디
 	public String m_pw=null;  //비번
