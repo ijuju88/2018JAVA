@@ -14,8 +14,7 @@
  </settings>
  
  <typeAliases>
- 	<typeAlias alias="V1_Test" type="com.ds.seat.vo.V1_Test"/>
- 	<typeAlias alias="V1_Member" type="com.ds.seat.vo.V1_Member"/>
+ 	<typeAlias alias="Seat_Member" type="com.ds.seat.vo.Seat_Member"/>
  </typeAliases>
  
 </configuration>

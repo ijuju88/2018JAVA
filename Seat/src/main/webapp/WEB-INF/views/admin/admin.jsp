@@ -8,10 +8,22 @@
 
 <meta charset="UTF-8">
 
+ <!-- Morris chart -->
+ <link rel="stylesheet" href="resources/admin/plugins/morris/morris.css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="resources/admin/plugins/morris/morris.min.js"></script>
+
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="resources/admin/plugins/daterangepicker/daterangepicker.js"></script>
+
 <body class="hold-transition sidebar-mini">
 
 <c:choose>
-			<c:when test="${SID eq null}">
+			<c:when test="${sessionScope.SID eq null}">
 			<h3>잘못된 접근입니다...</h3>
 			</c:when>
 			<c:otherwise>
@@ -55,7 +67,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">들어가기<i class="fa fa-arrow-circle-right"></i></a>
+              <a href="adminshowseat.do" class="small-box-footer">들어가기<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -78,14 +90,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>${member_num}</h3>
 
-                <p>회원수</p>
+                <p>최근일주일간회원수</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">자세히보기<i class="fa fa-arrow-circle-right"></i></a>
+              <a href="adminmember.do" class="small-box-footer">자세히보기<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

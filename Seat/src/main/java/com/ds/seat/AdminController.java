@@ -1,27 +1,16 @@
 package com.ds.seat;
 
-import java.io.Console;
 import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.junit.Assert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ds.seat.dao.TestImpl;
-import com.ds.seat.vo.V1_Member;
-import com.ds.seat.vo.V1_Test;
+import com.ds.seat.dao.SeatMemberImpl;
+import com.ds.seat.vo.Seat_Member;
 
 
 /**
@@ -30,12 +19,12 @@ import com.ds.seat.vo.V1_Test;
 @Controller
 public class AdminController {
 	
-	@Autowired
-	private RedisTemplate<String, String> strTemplate=null;
+	/*@Autowired
+	private RedisTemplate<String, String> strTemplate=null;*/
 	
-	//DAO호출
 	@Autowired
-	private TestImpl tDAO=null;
+	private SeatMemberImpl smDAO;
+	
 
 	//관리자 로그인 페이지
 	@RequestMapping(value = "adminlogin.do", method = RequestMethod.GET)
@@ -47,12 +36,18 @@ public class AdminController {
 
 	//로그인후 관리자 메인페이지
 	@RequestMapping(value = "admin.do", method = RequestMethod.GET)
-	public String adminindex(Locale locale, Model model) {
-		
-		String id=strTemplate.opsForValue().get("SID");
-		model.addAttribute("SID", id);
+	public String adminindex(Model model) {
+		int member_num=smDAO.seatSelectMemberNumOne();
+		model.addAttribute("member_num", member_num);
 		return "admin/admin";
 	}
+	
+	
+	//좌석예약페이지
+		@RequestMapping(value = "adminshowseat.do", method = RequestMethod.GET)
+		public String adminshowseat(Model model) {
+			return "admin/adminshowseat";
+		}
 
 }
 

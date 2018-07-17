@@ -2,7 +2,7 @@ package com.ds.seat.vo;
 
 import java.io.Serializable;
 
-public class V1_Member implements Serializable{
+public class Seat_Member implements Serializable{
 
 	 
 	private static final long serialVersionUID = 1L;

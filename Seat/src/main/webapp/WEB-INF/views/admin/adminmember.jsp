@@ -9,10 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+	<script src="resources/js/jquery-3.2.1.js"></script>
 </head>
 <body>
 	<jsp:include page="admintitle.jsp"></jsp:include>
+	
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
@@ -39,40 +40,6 @@
 
 		<!-- Main content -->
 		<section class="content">
-		
-		<div class="btn-group btn-group-justified">
-    		<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="1">아이디</a> 
-			</div> 
-			<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="2">회원명</a>  
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="3">회원나이</a>  
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="4">전화번호</a> 
-			</div>
-			
-		</div>
-		
-		<div class="btn-group btn-group-justified">
-			<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="5">생년월일</a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="6">우편번호</a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="7">주소</a>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-secondary toggle-vis" style="color: white;" data-column="8">가입일</a>
-			</div>
-			
-		</div>
-		
-  </div>
 			
 		<div class="row">
 			<div class="col-12">
@@ -120,14 +87,23 @@
 			</div>
 			<!-- /.col -->
 		</div>
+</div>
 
-		</section>
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="1">아이디</a> 
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="2">회원명</a>  
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="3">회원나이</a>  
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="4">전화번호</a> 
+			
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="5">생년월일</a>
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="6">우편번호</a>
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="7">주소</a>
+<a class="btn btn-primary btn-block toggle-vis" style="color: white;" data-column="8">가입일</a>
+</section>
 
 	</div>
 
 
 	<jsp:include page="adminfooter.jsp"></jsp:include>
-
 	<!-- DataTables -->
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
