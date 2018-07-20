@@ -23,11 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ds.sts1.dao.CartImpl;
+import com.ds.sts1.dao.DeliveryImpl;
 import com.ds.sts1.dao.ItemDAO;
 import com.ds.sts1.dao.ItemImpl;
+import com.ds.sts1.dao.OrderImpl;
 import com.ds.sts1.vo.V1_Board;
 import com.ds.sts1.vo.V1_Cart;
 import com.ds.sts1.vo.V1_Item;
+import com.ds.sts1.vo.V1_Order;
 
 @Controller
 public class ShopController {
@@ -37,6 +40,12 @@ public class ShopController {
 
 	@Autowired
 	private CartImpl cDAO=null;
+	
+	@Autowired
+	private OrderImpl oDAO=null;
+	
+	@Autowired
+	private DeliveryImpl dDAO=null;
 
 	//내정보
 	@RequestMapping(value="mypage.do", method=RequestMethod.GET)
@@ -91,18 +100,18 @@ public class ShopController {
 	public String cart(HttpSession httpsession,Model model) {
 
 		try {
-			 Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new HashMap<String, Object>();
 			String id=(String)httpsession.getAttribute("SID");
 
 			if(id == null) {
 				//httpsession.setAttribute("BACK_URL", "mypage.do");
 				return "redirect:login.do";
 			}
-			
-			
+
+
 			List<V1_Cart> list=cDAO.selectItemList(id);
 			System.out.println(list.toString());
-			
+
 			model.addAttribute("list", list);
 
 			return "cart";
@@ -115,6 +124,51 @@ public class ShopController {
 
 
 
+	//구매하기페이지
+	@RequestMapping(value="order.do", method=RequestMethod.GET)
+	public String order(@RequestParam("itm_no") int itm_no, Model model) {
+		V1_Item vo = iDAO.selectEditItemOne(itm_no);
+		model.addAttribute("vo", vo);
+
+		return "order";
+	}
+	
+	
+	//주문완료
+		@RequestMapping(value="order.do", method=RequestMethod.POST)
+		public String order(@RequestParam("itm_no") int itm_no, @RequestParam("ord_cnt") int ord_cnt, 
+				Model model,HttpSession httpsession) {
+			V1_Order vo = new V1_Order();
+			String mem_id=(String)httpsession.getAttribute("SID");
+			
+			vo.setItm_no(itm_no);
+			vo.setMem_id(mem_id);
+			vo.setOrd_cnt(ord_cnt);
+			
+			oDAO.OrderInsert(vo);
+			
+			model.addAttribute("vo", vo);
+			
+			model.addAttribute("msg", "주문되었습니다.");
+			model.addAttribute("url", "mypage.do");
+			return "alert";
+
+		}
+	
+		//배송하기
+		@RequestMapping(value="delivery.do", method=RequestMethod.GET)
+		public String delivery(@RequestParam("ord_no") int ord_no, Model model) {
+			Map<String, Object> map=new HashMap<String, Object>();
+			map.put("dvr_status", 0);
+			map.put("ord_no", ord_no);
+
+			dDAO.insertDeliveryOne(map);
+
+			return "redirect:admin.do?menu=4";//관리자의 배송관리페이지로 이동
+
+		}
+	
+	//이미지
 	@RequestMapping(value= {"item_img.do"}, method=RequestMethod.GET)
 	public ResponseEntity<byte[]> itemImg(@RequestParam(value="itm_no") int no,HttpServletRequest request, HttpServletResponse response) {
 

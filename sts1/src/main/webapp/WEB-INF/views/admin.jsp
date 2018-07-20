@@ -28,8 +28,6 @@
 <script src="resources/js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="resources/css/sweetalert2.min.css">
 
-
-
 <body>
 	<nav
 		class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -62,8 +60,14 @@
 					</c:when>
 					<c:when test="${param.menu==2}">
 						<jsp:include page="admin/admin_menu2.jsp"></jsp:include>
-						
-			</c:when> </c:choose> </main>
+						</c:when>
+					<c:when test="${param.menu==3}">
+						<jsp:include page="admin/admin_menu3.jsp"></jsp:include>
+					</c:when>
+					<c:when test="${param.menu==4}">
+						<jsp:include page="admin/admin_menu4.jsp"></jsp:include>
+					</c:when>
+			</c:choose> </main>
 		</div>
 
 

@@ -10,12 +10,36 @@
 <script src="resources/js/feather.min.js"></script>
 
 <link rel="stylesheet" href="resources/css/bootstrap.min.css?var=2">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=2"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js?var=2"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 
 <script>
 	$(function() {
 		feather.replace();
+		$('.btn_admin_menu3_delivery').each(function(i, obj){
+			var ord_no = $(this).attr('value');
+		
+			$.get('ajax_delivery_insert_check.do?ord_no='+ord_no, function(data){
+				if(data.ret > 0){
+					$('.btn_admin_menu3_delivery').eq(i).attr('disabled', true);					
+				}
+				else{
+					$('.btn_admin_menu3_delivery').eq(i).attr('disabled', false);
+				}
+			},'json');
+			
+		});
+		
+		
+		$('.btn_admin_menu3_delivery').on('click', function(){
+			var ord_no = $(this).attr('value'); //button 태그의 value값 얻기
+		  	alert(ord_no);
+		  	location.href = "delivery.do?ord_no="+ord_no;	
+		  	return false;
+		});
+		
+		
 
 	});
 </script>
@@ -45,6 +69,17 @@
 								회원관리
 						</a></li>
 
+						<li class="nav-item"><a
+							${param.menu==3 ? 'class="nav-link active"' : 'class="nav-link"'}
+							href="admin.do?menu=3"> <span data-feather="users"></span>
+								주문관리
+						</a></li>
+						
+						<li class="nav-item"><a
+							${param.menu==4 ? 'class="nav-link active"' : 'class="nav-link"'}
+							href="admin.do?menu=4"> <span data-feather="users"></span>
+								배송관리
+						</a></li>
 
 					</ul>
 

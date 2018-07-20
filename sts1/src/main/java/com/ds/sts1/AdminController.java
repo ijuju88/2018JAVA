@@ -2,8 +2,10 @@ package com.ds.sts1;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +32,7 @@ import com.ds.sts1.dao.ItemDAO;
 import com.ds.sts1.dao.ItemImpl;
 import com.ds.sts1.dao.MemberDAO;
 import com.ds.sts1.dao.MemberImpl;
+import com.ds.sts1.dao.OrderImpl;
 import com.ds.sts1.func.Config;
 import com.ds.sts1.vo.V1_Item;
 import com.ds.sts1.vo.V1_Member;
@@ -44,6 +47,9 @@ public class AdminController {
 	private ItemImpl iDAO=null;
 	@Autowired
 	private MemberImpl mDAO=null;
+	
+	@Autowired
+	private  OrderImpl oDAO=null;
 
 	@RequestMapping(value="admin.do", method=RequestMethod.GET)
 	public String admin(HttpServletRequest request, HttpServletResponse response,Model model) {
@@ -66,6 +72,18 @@ public class AdminController {
 			mlist.setList(list);
 			model.addAttribute("mlist", mlist); 
 			
+			
+		}else if(menu.equals("3")) {
+			
+			List<HashMap<String, Object>> olist=oDAO.selectMemberItemOrderList();
+			
+			System.out.println("!!!!"+olist.toString());
+			model.addAttribute("olist", olist);
+
+			
+		}else if(menu.equals("4")) {
+			
+
 			
 		}else if(menu.equals("0") && menu.equals("")) {
 			return "admin.do";
@@ -287,5 +305,7 @@ public class AdminController {
 		return "redirect:admin.do?menu=2";
 	
 	}
+	
+	
 
 }

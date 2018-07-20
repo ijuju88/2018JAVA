@@ -7,14 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ds.sts1.dao.BoardReployDAO;
 import com.ds.sts1.dao.BoardReployImpl;
-import com.ds.sts1.dao.ItemDAO;
+import com.ds.sts1.dao.DeliveryImpl;
 import com.ds.sts1.dao.ItemImpl;
 import com.ds.sts1.vo.V1_BoardReply;
 import com.ds.sts1.vo.V1_Item;
@@ -28,6 +29,10 @@ public class AjaxController {
 	
 	@Autowired
 	private BoardReployImpl brDAO=null;
+	
+	@Autowired
+	private DeliveryImpl dDAO=null;
+
 
 	//Map{"abc":"def"}
 	//VO {itm_no":14,"....} 에러제어 {"ret":"n"}
@@ -66,8 +71,21 @@ public class AjaxController {
 
 
 	}
-	
-	
+
+
+	//배송하기 했는지 체크
+	@RequestMapping(value="ajax_delivery_insert_check.do" , 
+			method={RequestMethod.GET, RequestMethod.POST}
+		,produces="application/json")
+	public @ResponseBody Map<String, Object> ajaxDeliveryInseryCheck(@RequestParam("ord_no") int ord_no){
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		
+		int ret=dDAO.selectOrderNoCheck(ord_no);
+		map.put("ret", ret);
+		
+		return map;
+	}
 	
 	//댓글입력
 	

@@ -70,6 +70,28 @@
 					
 			});
 			
+			
+			//구매확인창
+			$('.btn_order').click(function() {
+				 var idx=$(this).index('.btn_order');
+				 var itm_no=$('.hidden_item').eq(idx).val();
+				 swal({
+					  title: '구매',
+					  text: "구매할건가요?",
+					  type: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: '예'
+					}).then((result) => {
+					  if (result.value) {
+						  //alert(itm_no);
+						  window.location.href="order.do?itm_no="+itm_no;
+					  }
+					});
+					
+			});
+			
 
 		});
 	</script>

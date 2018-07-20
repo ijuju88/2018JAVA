@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="V1_Delivery">
+
+	
+	<!-- 배송 -->
+	<insert id="insertDeliveryOne" parameterType="java.util.HashMap"  useGeneratedKeys="false">
+		INSERT INTO V1_Delivery 
+		VALUES(SEQ_V1_DELIVERY_NO.NEXTVAL, #{dvr_status}, SYSDATE, #{ord_no})		
+	</insert>
+	
+	<!-- 배송확인  -->
+	<select id="selectOrderNoCheck" parameterType="int"  resultType="int">
+		SELECT NVL(COUNT(*), 0)CNT FROM V1_Delivery WHERE ORD_ID=#{ord_no}
+	</select>
+
+
+</mapper>

@@ -32,7 +32,7 @@
 							<form action="cart.do" method="get" class="form1">
 								<div class="card-header">
 									<h4 class="my-0 font-weight-normal">${iDAO.itm_name}</h4>
-									<input type="hidden" name="itm_no" value="${iDAO.itm_no}">
+									<input type="hidden"class="hidden_item" name="itm_no" value="${iDAO.itm_no}">
 
 									<div class="slider-nav" id="slides${status.count}">
 									
