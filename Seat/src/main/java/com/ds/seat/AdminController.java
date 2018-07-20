@@ -1,6 +1,5 @@
 package com.ds.seat;
 
-import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.ds.seat.dao.SeatMemberImpl;
-import com.ds.seat.vo.Seat_Member;
 
 
 /**
@@ -18,10 +15,10 @@ import com.ds.seat.vo.Seat_Member;
  */
 @Controller
 public class AdminController {
-	
+
 	/*@Autowired
 	private RedisTemplate<String, String> strTemplate=null;*/
-	
+
 	@Autowired
 	private SeatMemberImpl smDAO;
 	
@@ -41,13 +38,15 @@ public class AdminController {
 		model.addAttribute("member_num", member_num);
 		return "admin/admin";
 	}
+
+
+	//공연예약페이지
+	@RequestMapping(value = "adminshowseat.do", method = RequestMethod.GET)
+	public String adminshowseat(Model model) {
+		
+		return "admin/adminshowseat";
+	}
 	
-	
-	//좌석예약페이지
-		@RequestMapping(value = "adminshowseat.do", method = RequestMethod.GET)
-		public String adminshowseat(Model model) {
-			return "admin/adminshowseat";
-		}
 
 }
 

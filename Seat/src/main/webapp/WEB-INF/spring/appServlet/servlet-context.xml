@@ -19,8 +19,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 			<mapping path="/**" />
 			<exclude-mapping path="/login**" />
 			<exclude-mapping path="/logout**" />
-			<exclude-mapping path="/resources**" />
-			<exclude-mapping path="/resources/**" />
 			<beans:bean
 				class="com.ds.seat.interceptor.MainInterceptor">
 			</beans:bean>
@@ -41,7 +39,5 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	</beans:bean>
 
 	<context:component-scan base-package="com.ds.seat" />
-
-
-
+	<context:component-scan base-package="com.ds.seatadmin" />
 </beans:beans>
