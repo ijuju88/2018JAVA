@@ -6,36 +6,33 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page session="true"%>
 <html>
+
 <head>
-<title>Home</title>
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<!-- Title -->
+<title>Original - Lifestyle Blog Template</title>
+
+<!-- Favicon -->
+<link rel="icon" href="resources/img/core-img/favicon.ico">
+
 </head>
 
-
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-
-<script src="resources/js/jquery-3.2.1.js"></script>
-
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/js/jquery.slides.js"></script>
-<script src="resources/js/holder.min.js"></script>
-
-<script src="resources/js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="resources/css/sweetalert2.min.css">
-<script type="text/javascript">
-	
-		/*  function callAjax() {
-		        $.ajax({
-		           url : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20171110",
-		           success : function(result) {
-		           //영화 제목과 순위출력
-		            for(var i=0; i<result['boxOfficeResult']['weeklyBoxOfficeList'].length; i++){
-		                 document.write(result['boxOfficeResult']['weeklyBoxOfficeList'][i]['rank']+"위 : "+result['boxOfficeResult']['weeklyBoxOfficeList'][i]['movieNm'] +"<br>")
-		            }
-		           }
-		        });
-		     } */
-
-</script>
 <body>
+
+
+
+	<jsp:include page="use/home/hometitle.jsp"></jsp:include>
+	<jsp:include page="use/home/homecontent.jsp"></jsp:include>
+	<jsp:include page="use/home/homefooter.jsp"></jsp:include>
+	<!-- ##### Footer Area End ##### -->
+
+
 </body>
 </html>
+

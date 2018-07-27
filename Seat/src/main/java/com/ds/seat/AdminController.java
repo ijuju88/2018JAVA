@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.ds.seat.dao.SeatMemberImpl;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ds.seat.dao.SeatMemberDAO;
+import com.ds.seat.dao.SeatShowDAO;
 
 
 /**
@@ -16,11 +19,11 @@ import com.ds.seat.dao.SeatMemberImpl;
 @Controller
 public class AdminController {
 
-	/*@Autowired
-	private RedisTemplate<String, String> strTemplate=null;*/
-
 	@Autowired
-	private SeatMemberImpl smDAO;
+	private SeatMemberDAO smDAO;
+	
+	@Autowired
+	private SeatShowDAO ssDAO;
 	
 
 	//관리자 로그인 페이지
@@ -35,7 +38,9 @@ public class AdminController {
 	@RequestMapping(value = "admin.do", method = RequestMethod.GET)
 	public String adminindex(Model model) {
 		int member_num=smDAO.seatSelectMemberNumOne();
+		int show_num=ssDAO.selectSeatshowOne();
 		model.addAttribute("member_num", member_num);
+		model.addAttribute("show_num", show_num);
 		return "admin/admin";
 	}
 
@@ -44,7 +49,7 @@ public class AdminController {
 	@RequestMapping(value = "adminshowseat.do", method = RequestMethod.GET)
 	public String adminshowseat(Model model) {
 		
-		return "admin/adminshowseat";
+		return "admin/showseat/adminshowseat";
 	}
 	
 

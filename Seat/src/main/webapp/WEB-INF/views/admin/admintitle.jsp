@@ -150,7 +150,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="admin.do" class="brand-link">
       <img src="resources/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">관리자 페이지</span>
@@ -204,6 +204,14 @@
                   <p>회원관리</p>
                 </a>
               </li>
+              
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>공지사항</p>
+                </a>
+              </li>
+              
             </ul>
             
           </li>
@@ -241,7 +249,7 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="resources/js/bootstrap.bundle.min.js"></script>
 
 <!-- Sparkline -->
 <script src="resources/admin/plugins/sparkline/jquery.sparkline.min.js"></script>

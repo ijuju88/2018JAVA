@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.ds.seat.dao.SeatMemberImpl;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ds.seat.dao.SeatMemberDAO;
 import com.ds.seat.vo.Seat_Member;
 
 @Controller
@@ -22,7 +24,7 @@ public class MemberController {
 	
 	//DAO호출
 	@Autowired
-	private SeatMemberImpl smDAO=null;
+	private SeatMemberDAO smDAO=null;
 
 	//관리자 로그인후
 	@RequestMapping(value = "adminlogin.do", method = RequestMethod.POST)
@@ -49,9 +51,6 @@ public class MemberController {
 					httpsession.setAttribute("SID", vo1.getM_id());
 					httpsession.setAttribute("SNAME", vo1.getM_pw());
 					
-				/*	strTemplate.opsForValue().set("SID", id);
-					strTemplate.opsForValue().set("SNAME", vo1.getM_name());*/
-				
 					request.setAttribute("msg", "로그인성공");
 					request.setAttribute("url", "admin.do");
 					
@@ -72,11 +71,12 @@ public class MemberController {
 		try {
 			List<Seat_Member> list=smDAO.seatSelectMemberList();
 			model.addAttribute("Memberlist", list);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		return "admin/adminmember";
+		return "admin/member/adminmember";
 	}
 
 }

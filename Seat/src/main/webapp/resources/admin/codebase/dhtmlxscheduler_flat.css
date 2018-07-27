@@ -1224,7 +1224,7 @@ div.icon_delete {
 }
 
 .dhx_cal_data table {
-	border-collapse: separate
+	overflow: hidden
 }
 
 .dhx_cal_light .dhx_cal_radio label {
@@ -1727,7 +1727,7 @@ div.dhx_menu_head, div.dhx_menu_icon {
 	position: absolute;
 	left: 0;
 	width: 100%;
-	z-index: -1
+	z-index: -1;
 }
 
 .dhx_cal_today_button {

@@ -1,6 +1,7 @@
 package com.ds.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -30,8 +31,13 @@ public class BoradViewServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		
+		PrintWriter print=response.getWriter();
+		
 		request.setAttribute("title", "글보기");
 
 		//boardview.do?no=?
@@ -43,17 +49,26 @@ public class BoradViewServlet extends HttpServlet {
 
 		request.setAttribute("vo", vo);
 		System.out.println(vo.getBrd_file());
+		
+		//이전페이지 주소
+		String page=request.getHeader("referer");
+		if(page ==null || !page.equals("boardlist.do")) {
+			print.println("<script>alert('잘못된접근');</script>");
+			return null;
+		}else {
+			//이전글
+			int pno=bDAO.prevBoardNo(Integer.parseInt(no));
+			request.setAttribute("pno", pno);
 
-		//이전글
-		int pno=bDAO.prevBoardNo(Integer.parseInt(no));
-		request.setAttribute("pno", pno);
+			//다음글
+			int nno=bDAO.nextBoardNo(Integer.parseInt(no));
+			request.setAttribute("nno", nno);
+			
+			request.getRequestDispatcher("/WEB-INF/boardview.jsp").forward(request, response);
 
-		//다음글
-		int nno=bDAO.nextBoardNo(Integer.parseInt(no));
-		request.setAttribute("nno", nno);
+		}
 
-
-		request.getRequestDispatcher("/WEB-INF/boardview.jsp").forward(request, response);
+	
 
 	}
 
