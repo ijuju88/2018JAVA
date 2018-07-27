@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="resources/css/sweetalert2.min.css">
 <script type="text/javascript">
 	
-		 function callAjax() {
+		/*  function callAjax() {
 		        $.ajax({
 		           url : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20171110",
 		           success : function(result) {
@@ -33,9 +33,9 @@
 		            }
 		           }
 		        });
-		     }
+		     } */
 
 </script>
-<button onclick="callAjax()">클릭</button>
+<body>
 </body>
 </html>
