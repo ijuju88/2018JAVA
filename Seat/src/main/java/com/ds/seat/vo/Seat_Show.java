@@ -13,13 +13,15 @@ public class Seat_Show implements Serializable{
 	public String show_img2=null; 
 	public String show_startdate=null;
 	public String show_enddate=null;
+	public int show_id=0;
 	
 	public Seat_Show() {
 		super();
 	}
 	
-	public Seat_Show(long show_no, String show_title, String show_content,String show_img1, String show_img2,
-			String show_startdate, String show_enddate) {
+	
+	public Seat_Show(long show_no, String show_title, String show_content, String show_img1, String show_img2,
+			String show_startdate, String show_enddate, int show_id) {
 		super();
 		this.show_no = show_no;
 		this.show_title = show_title;
@@ -28,7 +30,18 @@ public class Seat_Show implements Serializable{
 		this.show_img2 = show_img2;
 		this.show_startdate = show_startdate;
 		this.show_enddate = show_enddate;
+		this.show_id = show_id;
 	}
+
+	public int getShow_id() {
+		return show_id;
+	}
+
+	public void setShow_id(int show_id) {
+		this.show_id = show_id;
+	}
+
+	
 	public String getShow_img1() {
 		return show_img1;
 	}
@@ -77,8 +90,10 @@ public class Seat_Show implements Serializable{
 	public String toString() {
 		return "Seat_Show [show_no=" + show_no + ", show_title=" + show_title + ", show_content=" + show_content
 				+ ", show_img1=" + show_img1 + ", show_img2=" + show_img2 + ", show_startdate=" + show_startdate
-				+ ", show_enddate=" + show_enddate + "]";
+				+ ", show_enddate=" + show_enddate + ", show_id=" + show_id + "]";
 	}
+
+	
 	
 	
 }

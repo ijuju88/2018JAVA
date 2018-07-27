@@ -21,10 +21,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="resources/admin/dist/css/adminlte.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="resources/admin/plugins/iCheck/flat/blue.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="resources/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+
   <!-- Date Picker -->
   <link rel="stylesheet" href="resources/admin/plugins/datepicker/datepicker3.css">
 
@@ -150,7 +147,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="admin.do" class="brand-link">
       <img src="resources/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">관리자 페이지</span>
@@ -204,6 +201,14 @@
                   <p>회원관리</p>
                 </a>
               </li>
+              
+              <li class="nav-item">
+                <a href="notice_list.do" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>공지사항</p>
+                </a>
+              </li>
+              
             </ul>
             
           </li>
@@ -212,13 +217,13 @@
           <li class="nav-header">설정</li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="https://admin.iamport.kr/payments" class="nav-link">
               <i class="nav-icon fa fa-circle-o text-warning"></i>
-              <p>관리자정보수정</p>
+              <p>결제정보(아임포트)</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="adminlogout.do" class="nav-link">
               <i class="nav-icon fa fa-circle-o text-danger"></i>
               <p class="text">로그아웃</p>
             </a>
@@ -241,15 +246,7 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Sparkline -->
-<script src="resources/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
-<!-- jvectormap -->
-<script src="resources/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="resources/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="resources/admin/plugins/knob/jquery.knob.js"></script>
+<script src="resources/js/bootstrap.bundle.min.js"></script>
 
 <!-- datepicker -->
 <script src="resources/admin/plugins/datepicker/bootstrap-datepicker.js"></script>

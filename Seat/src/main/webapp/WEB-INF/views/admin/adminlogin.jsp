@@ -18,10 +18,11 @@
 <script src="resources/js/holder.min.js"></script>
 
 <script src="resources/js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="resources/css/sweetalert2.min.css">
 
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet" href="resources/css/adminlogin.css">
+<link rel="stylesheet" href="resources/css/adminlogin.css?ver=1">
+
+<link rel="stylesheet" href="resources/css/sweetalert2.min.css">
 
   
 </head>
@@ -56,9 +57,7 @@
   </div>
 </div>
 
-    <script  src="resources/js/adminlogin.js"></script>
-
-
+    <script  src="resources/js_jsp/adminlogin.js"></script>
 
 
 </body>

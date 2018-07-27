@@ -2,12 +2,18 @@ package com.ds.seat;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.ds.seat.dao.SeatMemberImpl;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ds.seat.dao.SeatMemberDAO;
+import com.ds.seat.dao.SeatShowDAO;
 
 
 /**
@@ -16,12 +22,12 @@ import com.ds.seat.dao.SeatMemberImpl;
 @Controller
 public class AdminController {
 
-	/*@Autowired
-	private RedisTemplate<String, String> strTemplate=null;*/
+	@Autowired
+	private SeatMemberDAO smDAO;
 
 	@Autowired
-	private SeatMemberImpl smDAO;
-	
+	private SeatShowDAO ssDAO;
+
 
 	//관리자 로그인 페이지
 	@RequestMapping(value = "adminlogin.do", method = RequestMethod.GET)
@@ -34,8 +40,10 @@ public class AdminController {
 	//로그인후 관리자 메인페이지
 	@RequestMapping(value = "admin.do", method = RequestMethod.GET)
 	public String adminindex(Model model) {
-		int member_num=smDAO.seatSelectMemberNumOne();
+		int member_num=smDAO.seatSelectMemberNum();
+		int show_num=ssDAO.selectSeatshowOne();
 		model.addAttribute("member_num", member_num);
+		model.addAttribute("show_num", show_num);
 		return "admin/admin";
 	}
 
@@ -43,10 +51,22 @@ public class AdminController {
 	//공연예약페이지
 	@RequestMapping(value = "adminshowseat.do", method = RequestMethod.GET)
 	public String adminshowseat(Model model) {
-		
-		return "admin/adminshowseat";
+
+		return "admin/showseat/adminshowseat";
 	}
-	
+
+
+	//로그아웃 들어가기
+	@RequestMapping(value = "adminlogout.do", method = RequestMethod.GET)
+	public String adminLogout(Model model,HttpSession session, HttpServletRequest req) {
+
+		session.invalidate(); //세션값 지우기
+		req.setAttribute("msg", "로그아웃성공");
+		req.setAttribute("url", "adminlogin.do");
+
+
+		return "alert";
+	}
 
 }
 
