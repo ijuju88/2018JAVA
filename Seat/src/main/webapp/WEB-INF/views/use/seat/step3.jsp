@@ -11,6 +11,7 @@
 <link rel='stylesheet'
 	href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
 <link rel="stylesheet" href="resources/homeshowseat.css">
+<<<<<<< HEAD
 <link rel="stylesheet" href="resources/style2.css">
 <style>
 .no-border {
@@ -283,5 +284,18 @@
 
 		 });
 	</script>
+=======
+</head>
+<body>
+
+	<div id="tabs-4">
+		<h3>결제하기</h3>
+		<p>
+		<li><button type="button" class="btn btn-primary cardchk">결제하기</button></li>
+		</p>
+	</div>
+
+
+>>>>>>> refs/remotes/origin/master
 </body>
 </html>

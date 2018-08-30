@@ -22,12 +22,23 @@ import com.ds.seat.dao.SeatShowDAO;
 @Controller
 public class AdminController {
 
+<<<<<<< HEAD
 	@Autowired
 	private SeatMemberDAO smDAO;
 
+=======
+>>>>>>> refs/remotes/origin/master
 	@Autowired
+<<<<<<< HEAD
 	private SeatShowDAO ssDAO;
 
+=======
+	private SeatMemberDAO smDAO;
+	
+	@Autowired
+	private SeatShowDAO ssDAO;
+	
+>>>>>>> refs/remotes/origin/master
 
 	//관리자 로그인 페이지
 	@RequestMapping(value = "adminlogin.do", method = RequestMethod.GET)
@@ -40,7 +51,11 @@ public class AdminController {
 	//로그인후 관리자 메인페이지
 	@RequestMapping(value = "admin.do", method = RequestMethod.GET)
 	public String adminindex(Model model) {
+<<<<<<< HEAD
 		int member_num=smDAO.seatSelectMemberNum();
+=======
+		int member_num=smDAO.seatSelectMemberNumOne();
+>>>>>>> refs/remotes/origin/master
 		int show_num=ssDAO.selectSeatshowOne();
 		model.addAttribute("member_num", member_num);
 		model.addAttribute("show_num", show_num);
@@ -51,7 +66,11 @@ public class AdminController {
 	//공연예약페이지
 	@RequestMapping(value = "adminshowseat.do", method = RequestMethod.GET)
 	public String adminshowseat(Model model) {
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> refs/remotes/origin/master
 		return "admin/showseat/adminshowseat";
 	}
 

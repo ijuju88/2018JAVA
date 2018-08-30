@@ -3,7 +3,7 @@ package com.ds.seat.vo;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class Notice_File implements Serializable{
+public class Notice_file implements Serializable{
 	/**
 	 * 
 	 */
@@ -15,11 +15,11 @@ public class Notice_File implements Serializable{
 	private byte[] nf_filebyte=null;
 	private int nb_no=0;
 
-	public Notice_File() {
+	public Notice_file() {
 		super();
 	}
 
-	public Notice_File(int nf_num, String nf_filename, byte[] nf_filebyte, int nb_no) {
+	public Notice_file(int nf_num, String nf_filename, byte[] nf_filebyte, int nb_no) {
 		super();
 		this.nf_num = nf_num;
 		this.nf_filename = nf_filename;

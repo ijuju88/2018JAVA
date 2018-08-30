@@ -203,7 +203,11 @@
               </li>
               
               <li class="nav-item">
+<<<<<<< HEAD
                 <a href="notice_list.do" class="nav-link">
+=======
+                <a href="#" class="nav-link">
+>>>>>>> refs/remotes/origin/master
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>공지사항</p>
                 </a>
@@ -247,6 +251,17 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="resources/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
+=======
+
+<!-- Sparkline -->
+<script src="resources/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="resources/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="resources/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="resources/admin/plugins/knob/jquery.knob.js"></script>
+>>>>>>> refs/remotes/origin/master
 
 <!-- datepicker -->
 <script src="resources/admin/plugins/datepicker/bootstrap-datepicker.js"></script>

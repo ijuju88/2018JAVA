@@ -87,7 +87,11 @@ h2 {
 /* card meta */
 .card__meta time {
     font-size: 1.5rem;
+<<<<<<< HEAD
     color: #fff;
+=======
+    color: #bbb;
+>>>>>>> refs/remotes/origin/master
     margin-left: 0.8rem;
 }
 

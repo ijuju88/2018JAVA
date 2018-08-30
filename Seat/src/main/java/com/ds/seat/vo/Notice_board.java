@@ -3,7 +3,7 @@ package com.ds.seat.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Notice_Board implements Serializable{
+public class Notice_board implements Serializable{
 	/**
 	 * 
 	 */
@@ -11,33 +11,21 @@ public class Notice_Board implements Serializable{
 	
 	
 	//http://devofhwb.tistory.com/17
-	private int nb_no=0; 
-	private String nb_category=null; //카테고리
+	private int nb_no=0;
 	private String nb_title=null;
 	private String nb_content=null;
 	private Date nb_date=null;
-
-	public Notice_Board() {
+	
+	public Notice_board() {
 		super();
 	}
-
-	public Notice_Board(int nb_no, String nb_category, String nb_title, String nb_content, Date nb_date) {
+	
+	public Notice_board(int nb_no, String nb_title, String nb_content, Date nb_date) {
 		super();
 		this.nb_no = nb_no;
-		this.nb_category = nb_category;
 		this.nb_title = nb_title;
 		this.nb_content = nb_content;
 		this.nb_date = nb_date;
-	}
-
-	public String getNb_category() {
-		return nb_category;
-	}
-
-
-
-	public void setNb_category(String nb_category) {
-		this.nb_category = nb_category;
 	}
 
 
@@ -92,8 +80,8 @@ public class Notice_Board implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Notice_Board [nb_no=" + nb_no + ", nb_category=" + nb_category + ", nb_title=" + nb_title
-				+ ", nb_content=" + nb_content + ", nb_date=" + nb_date +  "]";
+		return "Notice_board [nb_no=" + nb_no + ", nb_title=" + nb_title + ", nb_content=" + nb_content + ", nb_date="
+				+ nb_date + "]";
 	}
 	
 	

@@ -1,15 +1,43 @@
 package com.ds.seat;
 
+<<<<<<< HEAD
 import java.io.*;
 import java.util.*;
+=======
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
 import javax.servlet.http.*;
+=======
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
+
+import org.apache.commons.io.IOUtils;
+>>>>>>> refs/remotes/origin/master
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.http.*;
+=======
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+>>>>>>> refs/remotes/origin/master
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
 
 import com.ds.seat.dao.SeatChoiceDAO;
@@ -20,6 +48,16 @@ import com.ds.seat.vo.Seat_Member_Reservation;
 import com.ds.seat.vo.Seat_Show;
 import com.ds.seat.vo.Seat_Show_List;
 import com.ds.seat.vo.Show_Seat;
+=======
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ds.seat.dao.SeatMemberDAO;
+import com.ds.seat.dao.SeatShowDAO;
+import com.ds.seat.vo.Seat_Show;
+import com.ds.seat.vo.Seat_Show_Price_List;
+>>>>>>> refs/remotes/origin/master
 
 
 /**
@@ -27,6 +65,7 @@ import com.ds.seat.vo.Show_Seat;
  */
 @Controller
 public class HomeController {
+<<<<<<< HEAD
 	@Autowired
 	private SeatShowDAO ssDAO;
 	
@@ -38,7 +77,10 @@ public class HomeController {
 	
 	@Autowired
 	private Show_SeatDAO sseatDAO;
+=======
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
 	
 	@RequestMapping(value = {"home.do", "/"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
@@ -109,6 +151,18 @@ public class HomeController {
 
 			model.addAttribute("ssplList", ssplList);
 			
+=======
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	@Autowired
+	private SeatShowDAO ssDAO;
+
+	@RequestMapping(value = {"home.do", "/"}, method = RequestMethod.GET)
+	public String home(Locale locale, Model model, HttpServletRequest request) {
+		try {
+			List<Seat_Show_Price_List> ssplList=ssDAO.selectSeatshowList();
+			model.addAttribute("ssplList", ssplList);
+>>>>>>> refs/remotes/origin/master
 		} catch (Exception e) {
 			System.out.println("ShowList 컨트롤러 에러 : "+e.getMessage());
 		}
@@ -167,6 +221,7 @@ public class HomeController {
 
 		}
 	}
+<<<<<<< HEAD
 	
 	//회사소개페이지
 	@RequestMapping(value = "about.do", method = RequestMethod.GET)
@@ -176,4 +231,6 @@ public class HomeController {
 	}
 
 
+=======
+>>>>>>> refs/remotes/origin/master
 }

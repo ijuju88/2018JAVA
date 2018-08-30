@@ -57,7 +57,11 @@
   </div>
 </div>
 
+<<<<<<< HEAD
     <script  src="resources/js_jsp/adminlogin.js"></script>
+=======
+    <script  src="resources/js/adminlogin.js"></script>
+>>>>>>> refs/remotes/origin/master
 
 
 </body>
